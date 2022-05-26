@@ -81,6 +81,7 @@ Marca varchar(10) null,
 Modelo int(4) null,
 Estado_Vehiculo int not null,
 Observaciones varchar (350) not null,
+Fecha_Registro_Entrada date,
 primary key (Id_Registro_Entrada)
 );
 alter table Registro_Entrada add foreign key(Codigo_Vehiculo)  references Orden_Trabajo (Id_Orden_Trabajo);
@@ -106,6 +107,7 @@ Retrovisores varchar(25) null,
 Rayones varchar(25) null,
 Estado_Vehiculo int not null,
 Observaciones varchar(250) not null,
+Fecha_Orden_Trabajo date,
 primary key (Id_Orden_Trabajo)
 );
 alter table Orden_Trabajo add foreign key(Estado_Vehiculo) references Estados_Vehiculo (Id_Estado_Vehiculo);
@@ -119,6 +121,7 @@ Marca varchar(10) null,
 Modelo int(4) null,
 Estado_Vehiculo int not null,
 Observaciones varchar (350) not null,
+Fecha_Registro_Salida date,
 primary key (Id_Registro_Salida)
 );
 
