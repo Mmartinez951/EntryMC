@@ -32,7 +32,7 @@ Descripcion_Rol varchar(50) null,
 Estado_Rol int not null,
 primary key (Id_Rol)
 );
-
+alter table Roles modify column Descripcion_Rol varchar(250) null;
 alter table Roles add foreign key (Estado_Rol) references Estado_Roles (Id_Estado_Rol);
 
 CREATE TABLE Estado_Roles (
@@ -44,9 +44,14 @@ primary key (Id_Estado_Rol)
 CREATE TABLE Permisos (
 Id_Permiso int auto_increment not null,
 Nombre_Permiso varchar(50) not null,
-foreign key (Id_Permiso) references Roles (Id_Rol),
+Rol_Permiso int not null,
+foreign key (Rol_Permiso) references Roles (Id_Rol),
 Primary key (Id_Permiso)
 );
+
+
+
+desc Permisos;
 
 CREATE TABLE Vehiculos (
 Id_Vehiculo int auto_increment not null,
