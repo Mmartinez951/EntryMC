@@ -54,7 +54,7 @@ Primary key (Id_Permiso)
 
 CREATE TABLE Vehiculos (
 Id_Vehiculo int auto_increment not null,
-Codigo int not null,
+Codigo varchar(10) not null,
 Placa varchar(6) not null,
 Marca varchar(10) null,
 Modelo int(4) null,
@@ -62,9 +62,9 @@ Color varchar(25) null,
 Tipo_Vehiculo int not null,
 Velocidad_MAX varchar(20) null,
 Estado_Vehiculo int not null,
-Orden_Trabajo int not null,
 primary key (Id_Vehiculo)
 );
+
 
 alter table Vehiculos add foreign key (Tipo_Vehiculo) references Tipos_Vehiculo (Id_Tipo_Vehiculo);
 alter table Vehiculos add foreign key (Estado_Vehiculo) references Estados_Vehiculo (Id_Estado_Vehiculo);
@@ -79,7 +79,8 @@ primary key (Id_Tipo_Vehiculo)
 
 CREATE TABLE Registro_Entrada (
 Id_Registro_Entrada int auto_increment not null,
-Codigo_Vehiculo int not null,
+Id_Vehiculo int not null,
+Codigo varchar(10) not null,
 Placa varchar(6) not null,
 Marca varchar(10) null,
 Modelo int(4) null,
@@ -88,7 +89,7 @@ Observaciones varchar (350) not null,
 Fecha_Registro_Entrada date,
 primary key (Id_Registro_Entrada)
 );
-alter table Registro_Entrada add foreign key(Codigo_Vehiculo)  references Orden_Trabajo (Id_Orden_Trabajo);
+alter table Registro_Entrada add foreign key(Id_Vehiculo)  references Vehiculos (Id_Vehiculo);
 
 
 CREATE TABLE Estados_Vehiculo (
@@ -99,6 +100,7 @@ primary key (Id_Estado_Vehiculo)
 
 CREATE TABLE Orden_Trabajo (
 Id_Orden_Trabajo int auto_increment not null,
+Id_Vehiculo int not null,
 Codigo_Vehiculo varchar(10) not null,
 Placa varchar(6) not null,
 Marca varchar(10) null,
@@ -114,12 +116,15 @@ Observaciones varchar(250) not null,
 Fecha_Orden_Trabajo date,
 primary key (Id_Orden_Trabajo)
 );
-alter table Orden_Trabajo add foreign key(Estado_Vehiculo) references Estados_Vehiculo (Id_Estado_Vehiculo);
+alter table Orden_Trabajo add foreign key(Estado_Vehiculo) references Vehiculos (Estado_Vehiculo);
+alter table Orden_Trabajo add foreign key(Id_Vehiculo) references Vehiculos (Id_Vehiculo);
+alter table Orden_Trabajo add foreign key(Asignar) references Usuarios (Id_usuario);
 
 
 CREATE TABLE Registro_Salida (
 Id_Registro_Salida int auto_increment not null,
-Codigo_Vehiculo int not null,
+Id_Vehiculo int not null,
+Codigo varchar(10) not null,
 Placa varchar(6) not null,
 Marca varchar(10) null,
 Modelo int(4) null,
@@ -129,6 +134,7 @@ Fecha_Registro_Salida date,
 primary key (Id_Registro_Salida)
 );
 
-alter table Registro_Salida add foreign key(Codigo_Vehiculo)  references Orden_Trabajo (Id_Orden_Trabajo);
+alter table Registro_Salida add foreign key(Id_Vehiculo)  references Vehiculos (Id_Vehiculo);
+alter table Registro_Salida add foreign key(Estado_Vehiculo) references Vehiculos (Estado_Vehiculo);
 
 
