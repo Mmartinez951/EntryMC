@@ -2,7 +2,7 @@
 CREATE DATABASE ENTRY_MC;
 USE ENTRY_MC;
 
-CREATE TABLE Tipo_Documento (
+CREATE TABLE Tipo_Documentos (
 Id_Tipo_Documento int auto_increment not null,
 Nombre_Documento varchar(25) not null,
 primary key (Id_Tipo_Documento)
@@ -22,17 +22,19 @@ Login varchar(50) not null,
 Password varchar(20) not null,
 primary key (Id_Usuario)
 );
-ALTER TABLE Usuarios add foreign key (Tipo_Documento) references Tipo_Documento (Id_Tipo_Documento);
+ALTER TABLE Usuarios add foreign key (Tipo_Documento) references Tipo_Documentos (Id_Tipo_Documento);
 ALTER TABLE Usuarios add foreign key (Nombre_Rol) references Roles (Id_Rol);
+
+
 
 CREATE TABLE Roles (
 Id_Rol int auto_increment not null,
 Nombre_Rol varchar(20) not null,
-Descripcion_Rol varchar(50) null,
+Descripcion_Rol varchar(250) null,
 Estado_Rol int not null,
 primary key (Id_Rol)
 );
-alter table Roles modify column Descripcion_Rol varchar(250) null;
+
 alter table Roles add foreign key (Estado_Rol) references Estado_Roles (Id_Estado_Rol);
 
 CREATE TABLE Estado_Roles (
@@ -50,9 +52,6 @@ Primary key (Id_Permiso)
 );
 
 
-
-desc Permisos;
-
 CREATE TABLE Vehiculos (
 Id_Vehiculo int auto_increment not null,
 Codigo int not null,
@@ -69,7 +68,7 @@ primary key (Id_Vehiculo)
 
 alter table Vehiculos add foreign key (Tipo_Vehiculo) references Tipos_Vehiculo (Id_Tipo_Vehiculo);
 alter table Vehiculos add foreign key (Estado_Vehiculo) references Estados_Vehiculo (Id_Estado_Vehiculo);
-Alter table Vehiculos add foreign key (Orden_Trabajo) references Orden_Trabajo (Id_Orden_Trabajo);
+#Alter table Vehiculos add foreign key (Orden_Trabajo) references Orden_Trabajo (Id_Orden_Trabajo);#
 
 
 CREATE TABLE Tipos_Vehiculo (
