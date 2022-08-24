@@ -1,9 +1,18 @@
+<?php
+include("./Conexion/Conexion.php");
+
+$cone = new Conexion();
+$c = $cone -> conectando();
+$query = "SELECT * FROM USUARIOS";
+$ejecuta = mysqli_query($c,$query);
+$usuarios = mysqli_fetch_array ($ejecuta);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Nuevo cliente</title>
+	<title>Lista de clientes</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -60,7 +69,7 @@
 									<a href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Cliente</a>
 								</li>
 								<li>
-									<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Listar clientes</a>
+									<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de clientes</a>
 								</li>
 								<li>
 									<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar cliente</a>
@@ -141,20 +150,20 @@
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE CLIENTES
 				</h3>
 				<p class="text-justify">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem odit amet asperiores quis minus, dolorem repellendus optio doloremque error a omnis soluta quae magnam dignissimos, ipsam, temporibus sequi, commodi accusantium!
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit nostrum rerum animi natus beatae ex. Culpa blanditiis tempore amet alias placeat, obcaecati quaerat ullam, sunt est, odio aut veniam ratione.
 				</p>
 			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE</a>
+						<a href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE</a>
 					</li>
 					<li>
-						<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE CLIENTES</a>
+						<a class="active" href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE CLIENTES</a>
 					</li>
 					<li>
 						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR CLIENTE</a>
@@ -164,52 +173,78 @@
 			
 			<!-- Content here-->
 			<div class="container-fluid">
-				<form action="" class="form-neon" autocomplete="off">
-					<fieldset>
-						<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">DNI</label>
-										<input type="text" pattern="[a-zA-Z0-9-]{1,27}" class="form-control" id="cliente_dni" id="cliente_dni" maxlength="27">
-									</div>
-								</div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
-										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_nombre" id="cliente_nombre" maxlength="40">
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="cliente_apellido" class="bmd-label-floating">Apellido</label>
-										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_apellido" id="cliente_apellido" maxlength="40">
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="cliente_telefono" class="bmd-label-floating">Teléfono</label>
-										<input type="text" pattern="[0-9()+]{1,20}" class="form-control" name="cliente_telefono" id="cliente_telefono" maxlength="20">
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="cliente_direccion" class="bmd-label-floating">Dirección</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="cliente_direccion" id="cliente_direccion" maxlength="150">
-									</div>
-								</div>
-							</div>
-						</div>
-					</fieldset>
-					<br><br><br>
-					<p class="text-center" style="margin-top: 40px;">
-						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
-						&nbsp; &nbsp;
-						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
-					</p>
-				</form>
-			</div>	
+				<div class="table-responsive">
+					<table class="table table-dark table-sm">
+						<thead>
+							<tr class="text-center roboto-medium">
+								<th>#</th>
+								<th>Nombre</th>
+								<th>Apellido</th>
+								<th>Numero Documento</th>
+								<th>Dirección</th>
+								<th>Correo Electrónico</th>
+								<th>Celular</th>
+								<th>Login</th>
+								<th>Password</th>
+								<th>ACTUALIZAR</th>
+								<th>ELIMINAR</th>
+							</tr>
+						</thead>
+							<?php
+							if($usuarios==0){
+								echo"No hay Registros";
+							}else{
+								do{
+							?>
+							
+
+						<tbody>
+							<tr class="text-center" >
+								<td><?php echo $usuarios[0]?></td>
+								<td><?php echo $usuarios[1]?></td>
+								<td><?php echo $usuarios[2]?></td>
+								<td><?php echo $usuarios[4]?></td>
+								<td><?php echo $usuarios[5]?></td>
+								<td><?php echo $usuarios[6]?></td>
+								<td><?php echo $usuarios[7]?></td>
+								<td><?php echo $usuarios[9]?></td>
+								<td><?php echo $usuarios[10]?></td>
+									
+								</td>
+								<td>
+									<a href="client-update.html" class="btn btn-success">
+	  									<i class="fas fa-sync-alt"></i>	
+									</a>
+								</td>
+								<td>
+									<form action="">
+										<button type="button" class="btn btn-warning">
+		  									<i class="far fa-trash-alt"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+							<?php
+								}while($usuarios = mysqli_fetch_array($ejecuta));
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item disabled">
+							<a class="page-link" href="#" tabindex="-1">Previous</a>
+						</li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item">
+							<a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 
 		</section>
 	</main>
