@@ -1,4 +1,4 @@
-<!-- <php
+<php
 class documentos{
                 public $CodigoDocumento;
                 public $NombreDocumento;
@@ -17,7 +17,7 @@ class documentos{
                                             )";
                                             echo $insertar;
                                             mysqli_query($c, $insertar);
-                                            echo "<script> alert('El documento fue creado en el sitema')</script>";
+                                            echo "<script> alert('El documento fue creado en el sistema')</script>";
                                         }
                     } 
                     function Modificar(){
@@ -31,4 +31,4 @@ class documentos{
                     }
                     }
 }
-?> -->
+?>

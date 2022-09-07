@@ -1,5 +1,5 @@
-<!-- <php
-    include('../modelo/DocumentosModelo.php');
+<php
+    include('../client-new.php');
     $obj = new Documentos();
     if($_post){
         $obj->CodigoDocumento = $_post['CodigoDocumento'];
@@ -9,4 +9,4 @@ if(isset($_post['guarda'])){
     $obj->agregar();
 }    
 
-?> -->
+?>

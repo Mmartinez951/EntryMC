@@ -1,3 +1,41 @@
+<php
+class usuario{
+                public $Codigousuario;
+                public $Nombreusuario;
+
+                    function agregar() {
+                                        $conet = new Conexion();
+                                        $c = $conet->conectando();
+                                        $query = "select * from usuarios where nuevousuario = '$this->Nuevousuario'";
+                                        $ejecuta = myqli_query($c, $query);
+                                        if(mysqli_fetch_array($ejecuta)){
+                                            echo "<script> alert('El documento ya existe en el sistema')</script>";
+                                        }else{
+                                            $insertar = "insert into documentos value"(
+                                                                                        '$this->Codigousuario',
+                                                                                        '$this->Nombreusuario'
+                                            )";
+                                            echo $insertar;
+                                            mysqli_query($c, $insertar);
+                                            echo "<script> alert('El documento fue creado en el sistema')</script>";
+                                        }
+                    } 
+                    function Modificar(){
+
+                    }
+                    function eliminar(){
+
+                    }
+                    function limpiar(){
+                        
+                    }
+                    }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -57,7 +95,7 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-users fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Usuarios</a>
+									<a href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
 									<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Vehiculos</a>
@@ -154,7 +192,7 @@
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</a>
+						<a class="active" href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</a>
 					</li>
 					<li>
 						<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE USUARIOS</a>

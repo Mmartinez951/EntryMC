@@ -17,7 +17,7 @@
 
     $obj = new Conexion();
         if($obj -> conectando()){
-                //echo "Conectado al servidor";
+                echo "Conectado al servidor"; 
         }
 ?>
 
