@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Home</title>
+	<title>Actualizar cliente</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -43,7 +43,7 @@
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						User <br><small class="roboto-condensed-light">Rol</small>
+						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -114,41 +114,73 @@
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fab fa-dashcube fa-fw"></i> &nbsp; DASHBOARD
+					<i class="fas fa-sync-alt fa-fw"></i> &nbsp; ACTUALIZAR CLIENTE
 				</h3>
 				<p class="text-justify">
-					Hola, Bienvenido a la Plataforma de Gestión de Vehículos
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem odit amet asperiores quis minus, dolorem repellendus optio doloremque error a omnis soluta quae magnam dignissimos, ipsam, temporibus sequi, commodi accusantium!
 				</p>
 			</div>
-			
-			<!-- Content -->
-			<div class="full-box tile-container">
 
-				<a href="client-new.php" class="tile">
-					<div class="tile-tittle">Usuarios</div>
-					<div class="tile-icon">
-						<i class="fas fa-users fa-fw"></i>
-						<p></p>
-					</div>
-				</a>
-
-				<a href="item-list.html" class="tile">
-					<div class="tile-tittle">Registros Patios</div>
-					<div class="tile-icon">
-						<i class="fas fa-pallet fa-fw"></i>
-						<p></p>
-					</div>
-				</a>
-
-				<a href="reservation-list.html" class="tile">
-					<div class="tile-tittle">Prestamos</div>
-					<div class="tile-icon">
-						<i class="fas fa-file-invoice-dollar fa-fw"></i>
-						<p></p>
-					</div>
-				</a>
+			<div class="container-fluid">
+				<ul class="full-box list-unstyled page-nav-tabs">
+					<li>
+						<a href="client-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE</a>
+					</li>
+					<li>
+						<a href="client-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE CLIENTES</a>
+					</li>
+					<li>
+						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR CLIENTE</a>
+					</li>
+				</ul>	
 			</div>
 			
+			<!-- Content here-->
+			<div class="container-fluid">
+				<form action="" class="form-neon" autocomplete="off">
+					<fieldset>
+						<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="cliente_dni" class="bmd-label-floating">DNI</label>
+										<input type="text" pattern="[a-zA-Z0-9-]{1,27}" class="form-control" id="cliente_dni" id="cliente_dni" maxlength="27">
+									</div>
+								</div>
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
+										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_nombre" id="cliente_nombre" maxlength="40">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group">
+										<label for="cliente_apellido" class="bmd-label-floating">Apellido</label>
+										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_apellido" id="cliente_apellido" maxlength="40">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group">
+										<label for="cliente_telefono" class="bmd-label-floating">Teléfono</label>
+										<input type="text" pattern="[0-9()+]{1,20}" class="form-control" name="cliente_telefono" id="cliente_telefono" maxlength="20">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group">
+										<label for="cliente_direccion" class="bmd-label-floating">Dirección</label>
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="cliente_direccion" id="cliente_direccion" maxlength="150">
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<br><br><br>
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="submit" class="btn btn-raised btn-success btn-sm"><i class="fas fa-sync-alt"></i> &nbsp; ACTUALIZAR</button>
+					</p>
+				</form>
+			</div>	
 
 		</section>
 	</main>
