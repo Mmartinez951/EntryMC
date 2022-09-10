@@ -2,22 +2,27 @@
 include("./Conexion/Conexion.php");
 include("./Controlador/categoriaControlador.php");
 $obj = new Categorias();
+$cone = new Conexion();
+$c = $cone -> conectando();
+
+
 if($_POST){
-	$obj -> Id_Usuario = $_POST['Id_Usuario'];
-    $obj -> Nombre_Usuario = $_POST['Nombre_Usuario'];
-    $obj -> Apellido_Usuario = $_POST['Apellido_Usuario'];
-    $obj -> Tipo_Documento = $_POST['Tipo_Documento'];
-    $obj -> Numero_Documento = $_POST['Numero_Documento'];
-    $obj -> Correo_Electronico = $_POST['Correo_Electronico'];
-    $obj -> Celular = $_POST['Celular'];
-    $obj -> Nombre_Rol = $_POST['Nombre_Rol'];
-    $obj -> Login = $_POST['Login'];
-    $obj -> Password = $_POST['Password'];
+
+    $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
+    $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
+    $obj->Tipo_Documento = $_POST['Tipo_Documento'];
+    $obj->Usuario_NumeroDocumento = $_POST['Usuario_NumeroDocumento'];
+    $obj->Usuario_Direccion = $_POST['Usuario_Direccion'];
+    $obj->Usuario_Correo = $_POST['Usuario_Correo'];
+    $obj->Usuario_Celular = $_POST['Usuario_Celular'];
+    $obj->Usuario_Rol = $_POST['Usuario_Rol'];
+    $obj->Usuario_Login = $_POST['Usuario_Login'];
+    $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -164,52 +169,92 @@ if($_POST){
 										<input type="text" pattern="[a-zA-Z0-9-]{1,27}" class="form-control" id="cliente_dni" id="cliente_dni" maxlength="27">
 									</div>
 								</div> -->
-								<div class="col-12 col-md-6">
+								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Nombre" class="bmd-label-floating">Nombre</label>
 										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="Usuario_Nombre" id="Usuario_Nombre" maxlength="40">
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-12 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Apellido" class="bmd-label-floating">Apellido</label>
 										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="Usuario_Apellido" id="Usuario_Apellido" maxlength="40">
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-12 col-md-7">
 								<div class="form-group">
-										<label for="Tipo_Documento" class="bmd-label-floating">Tipo Documento</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Tipo_Documento" id="Tipo_Documento" maxlength="150">
+								<label for="Tipo_Documento" class="bmd-label-floating">Tipo Documento</label>
+	                                <select class="form-control" name="Tipo_Documento" id="Tipo_Documento">
+										<?php
+											$query ="SELECT * FROM Tipo_Documentos";
+											$NombreDocumentos = mysqli_query($c,$query);
+
+											while($NombreDocumento = mysqli_fetch_array($NombreDocumentos)){
+										?>
+											<option value = "<?php echo $NombreDocumento[0]?>">
+											<?php echo $NombreDocumento[1]?>
+											</option>
+										<?php
+										}
+										?>    	
+	                                </select>
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-12 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_NumeroDocumento" class="bmd-label-floating">Numero de documento</label>
 										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_NumeroDocumento" id="Usuario_NumeroDocumento" maxlength="150">
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-12 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Direccion" class="bmd-label-floating">Dirección</label>
 										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Direccion" id="Usuario_Direccion" maxlength="150">
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Correo" class="bmd-label-floating">Correo electronico</label>
 										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Correo" id="Usuario_Correo" maxlength="150">
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Celular" class="bmd-label-floating">Celular</label>
 										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Celular" id="Usuario_Celular" maxlength="150">
 									</div>
 								</div>
-								<div class="col-12 col-md-4">
+								<div class="col-10 col-md-7">
 									<div class="form-group">
-										<label for="Usuario_Rol" class="bmd-label-floating">Rol</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Rol" id="Usuario_Rol" maxlength="150">
+									<label for="Usuario_Rol" class="bmd-label-floating">Rol</label>
+	                                <select class="form-control" name="Usuario_Rol" id="Usuario_Rol">
+										<?php
+											$query ="SELECT * FROM Roles";
+											$NombreRoles = mysqli_query($c,$query);
+											//echo $NombreDocumento;
+
+											while($NombreRol = mysqli_fetch_array($NombreRoles)){
+										?>
+											<option value = "<?php echo $NombreRol[0]?>">
+											<?php echo $NombreRol[1]?>
+											</option>
+										<?php
+										}
+										?>    
+											
+	                                </select>
+									</div>
+								</div>
+								<div class="col-10 col-md-7">
+								<div class="form-group">
+										<label for="Usuario_Login" class="bmd-label-floating">Login</label>
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Login" id="Usuario_Login" >
+								</div>
+								</div>
+								<div class="col-10 col-md-7">
+								<div class="form-group">
+										<label for="Usuario_Password" class="bmd-label-floating">Password</label>
+										<input type="password" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Password" id="Usuario_Password">
 									</div>
 								</div>
 							</div>

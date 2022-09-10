@@ -3,20 +3,33 @@ include("./modelo/DocumentosModelo.php");
 $obj = new Categorias();
 if($_POST){
 
-	$obj -> Id_Usuario = $_POST['Id_Usuario'];
-    $obj -> Nombre_Usuario = $_POST['Nombre_Usuario'];
-    $obj -> Apellido_Usuario = $_POST['Apellido_Usuario'];
-    $obj -> Tipo_Documento = $_POST['Tipo_Documento'];
-    $obj -> Numero_Documento = $_POST['Numero_Documento'];
-    $obj -> Correo_Electronico = $_POST['Correo_Electronico'];
-    $obj -> Celular = $_POST['Celular'];
-    $obj -> Nombre_Rol = $_POST['Nombre_Rol'];
-    $obj -> Login = $_POST['Login'];
-    $obj -> Password = $_POST['Password'];
+    $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
+    $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
+    $obj->Tipo_Documento = $_POST['Tipo_Documento'];
+    $obj->Usuario_NumeroDocumento = $_POST['Usuario_NumeroDocumento'];
+    $obj->Usuario_Direccion = $_POST['Usuario_Direccion'];
+    $obj->Usuario_Correo = $_POST['Usuario_Correo'];
+    $obj->Usuario_Celular = $_POST['Usuario_Celular'];
+    $obj->Usuario_Rol = $_POST['Usuario_Rol'];
+    $obj->Usuario_Login = $_POST['Usuario_Login'];
+    $obj->Usuario_Password = $_POST['Usuario_Password'];
+
+    
 }
 
 if(isset($_POST['Guardar'])){
-    echo "llegue";
+    echo "LLego Datos";
+    echo $obj->Usuario_Nombre, 
+    $obj->Usuario_Apellido,
+    $obj->Tipo_Documento,
+    $obj->Usuario_NumeroDocumento,
+    $obj->Usuario_Direccion,
+    $obj->Usuario_Correo,
+    $obj->Usuario_Celular,
+    $obj->Usuario_Rol,
+    $obj->Usuario_Login,
+    $obj->Usuario_Password,
+    
     $obj->agregar();
 }
 
@@ -30,8 +43,6 @@ if(isset($_POST['elimina'])){
 if(isset($_POST['limpia'])){
     $obj->limpiar();
 }
-
-
 
 
 ?>
