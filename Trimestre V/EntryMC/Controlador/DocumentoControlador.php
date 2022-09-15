@@ -2,7 +2,8 @@
     include('./client-new.php');
     $obj = new Categorias();
     if($_post)
-
+    
+    $obj->Usuario_Id = $_POST['Usuario_Id'];
     $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
     $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
     $obj->Tipo_Documento = $_POST['Tipo_Documento'];
@@ -14,8 +15,8 @@
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
     
-if(isset($_post['guardar'])){
-    $obj->agregar();
+if(isset($_POST['Guardar'])){
+    $obj->Agregar();
 }    
 
 ?>

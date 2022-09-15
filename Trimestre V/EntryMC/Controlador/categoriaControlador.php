@@ -1,8 +1,9 @@
 <?php
 include("./modelo/DocumentosModelo.php");
 $obj = new Categorias();
-/* if($_POST){
+if ($_POST){
 
+    //$obj->Id_Usuario = $_POST['Usuario_Id'];
     $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
     $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
     $obj->Tipo_Documento = $_POST['Tipo_Documento'];
@@ -14,9 +15,9 @@ $obj = new Categorias();
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
- */
+
 if(isset($_POST['Guardar'])){
-    echo $obj->agregar(); 
+    $obj->Agregar(); 
 }
 
 if(isset($_POST['modifica'])){

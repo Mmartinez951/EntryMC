@@ -8,6 +8,7 @@ $c = $cone->conectando();
 
 if($_POST){
 
+    $obj->Usuario_Id = $_POST['Usuario_Id'];
     $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
     $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
     $obj->Tipo_Documento = $_POST['Tipo_Documento'];
@@ -163,12 +164,12 @@ if($_POST){
 						<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
 						<div class="container-fluid">
 							<div class="row">
-								<!-- <div class="col-12 col-md-6">
+								<div class="col-10 col-md-7">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">#</label>
-										<input type="text" pattern="[a-zA-Z0-9-]{1,27}" class="form-control" id="cliente_dni" id="cliente_dni" maxlength="27">
+										<label for="Usuario_Id" class="bmd-label-floating">#</label>
+										<input type="text" pattern="[a-zA-Z0-9-]{1,27}" class="form-control" id="Usuario_Id" id="Usuario_Id" maxlength="27">
 									</div>
-								</div> -->
+								</div>
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Nombre" class="bmd-label-floating">Nombre</label>

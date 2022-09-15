@@ -3,6 +3,7 @@ include('../Controlador/DocumentosControlador.php');
 $obj = new Usuarios;
 if($_POST){
 
+    $obj->Usuario_Id = $_POST['Usuario_Id'];
     $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
     $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
     $obj->Tipo_Documento = $_POST['Tipo_Documento'];
