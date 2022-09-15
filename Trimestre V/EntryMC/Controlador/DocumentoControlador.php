@@ -14,7 +14,7 @@
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
     
-if(isset($_post['guarda'])){
+if(isset($_post['guardar'])){
     $obj->agregar();
 }    
 

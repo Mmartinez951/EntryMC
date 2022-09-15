@@ -3,7 +3,7 @@ include("./Conexion/Conexion.php");
 include("./Controlador/categoriaControlador.php");
 $obj = new Categorias();
 $cone = new Conexion();
-$c = $cone -> conectando();
+$c = $cone->conectando();
 
 
 if($_POST){
@@ -22,7 +22,7 @@ if($_POST){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">

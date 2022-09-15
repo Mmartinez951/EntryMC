@@ -60,7 +60,7 @@
 									<a href="client-new.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
-									<a href="client-list.html"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
+									<a href="client-list.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
 								</li>
 								<li>
 									<a href="client-search.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
