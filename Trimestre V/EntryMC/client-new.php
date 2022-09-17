@@ -8,7 +8,7 @@ $c = $cone->conectando();
 
 if($_POST){
 
-    $obj->Usuario_Id = $_POST['Usuario_Id'];
+    $obj->Id_Usuario = $_POST['Id_Usuario'];
     $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
     $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
     $obj->Tipo_Documento = $_POST['Tipo_Documento'];
@@ -166,8 +166,8 @@ if($_POST){
 							<div class="row">
 								<div class="col-10 col-md-7">
 									<div class="form-group">
-										<label for="Usuario_Id" class="bmd-label-floating">#</label>
-										<input type="text" pattern="[a-zA-Z0-9-]{1,27}" class="form-control" id="Usuario_Id" id="Usuario_Id" maxlength="27">
+										<label for="Id_Usuario" class="bmd-label-floating"></label>
+										<input class="form-control form-control-sm" type="text" name="Id_Usuario" id="Id_Usuario" placeholder="El Codigo es Asignado por el Sistema" aria-label=".form-control-sm example" maxlength="27">
 									</div>
 								</div>
 								<div class="col-10 col-md-7">

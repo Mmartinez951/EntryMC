@@ -3,7 +3,7 @@ include("./modelo/DocumentosModelo.php");
 $obj = new Categorias();
 if ($_POST){
 
-    //$obj->Id_Usuario = $_POST['Usuario_Id'];
+    $obj->Id_Usuario = $_POST['Id_Usuario'];
     $obj->Usuario_Nombre = $_POST['Usuario_Nombre'];
     $obj->Usuario_Apellido = $_POST['Usuario_Apellido'];
     $obj->Tipo_Documento = $_POST['Tipo_Documento'];
