@@ -40,9 +40,46 @@ class Categorias{
                     } 
                     function Modificar(){
 
-                    }
-                    function eliminar(){
+                                       $conect = new Conexion();
+                                       $c = $conect->conectando();
+                                       $query = "select * from Usuarios where Numero_Documento = '$this->Usuario_NumeroDocumento'";
+                                       $ejecuta = mysqli_query($c, $query);
+                                       if(mysqli_fetch_array($ejecuta)){
+                                          echo "<script> alert('El Usuario Ya Existe en el Sistema')</script>";
+                                       }else{
+                                          $update = "update usuarios set 
+                                                                           Nombre_Usuario='$this->Usuario_Nombre',
+                                                                           Apellido_Usuario='$this->Usuario_Apellido',
+                                                                           Tipo_Documento='$this->Tipo_Documento',
+                                                                           Numero_Documento='$this->Usuario_NumeroDocumento',
+                                                                           Direccion='$this->Usuario_Direccion',
+                                                                           Correo_Electronico='$this->Usuario_Correo',
+                                                                           Celular='$this->Usuario_Celular',
+                                                                           Nombre_Rol='$this->Usuario_Rol',
+                                                                           Login='$this->Usuario_Login',
+                                                                           Password='$this->Usuario_Password'
+                                                                           where Id_Usuario='$this->Id_Usuario'";
+                                          //echo $update;
+                                          mysqli_query($c,$update);
+                                          echo "<script> alert('El Usuario fue Modificado en el Sistema')</script>";
+                                          
+                                       }
 
+                    }
+                    function Eliminar(){
+
+                                       $conect = new Conexion();
+                                       $c = $conect->conectando();
+                                       $delete = "delete from usuarios where Id_Usuario='$this->Id_Usuario'";
+                                       $d=mysqli_query($c,$delete);
+                                        
+                                       
+                                       
+                                       if(mysql_errno()==1451){
+                                          echo "<script> alert('El Usuario No fue Eliminado en el Sistema porque tiene Registros Asociados')</script>";
+                                       }else{
+                                          echo "<script> alert('el Usuario fue Eliminado en el Sistema')</script>";
+                                       }
                     }
                     function limpiar(){
                         

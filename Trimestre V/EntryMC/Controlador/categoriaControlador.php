@@ -20,12 +20,12 @@ if(isset($_POST['Guardar'])){
     $obj->Agregar(); 
 }
 
-if(isset($_POST['modifica'])){
-    $obj->modificar();
+if(isset($_POST['Modificar'])){
+    $obj->Modificar();
 }
 
-if(isset($_POST['elimina'])){
-    $obj->eliminar();
+if(isset($_POST['Eliminar'])){
+    $obj->Eliminar();
 }
 if(isset($_POST['limpia'])){
     $obj->limpiar();

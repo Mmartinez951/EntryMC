@@ -1,5 +1,6 @@
 <?php
     include('./client-new.php');
+    include('./client-update.php');
     $obj = new Categorias();
     if($_post)
     
@@ -17,6 +18,9 @@
     
 if(isset($_POST['Guardar'])){
     $obj->Agregar();
-}    
+}   
+if(isset($_POST['Modificar'])){
+    $obj->Modificar();
+}  
 
 ?>

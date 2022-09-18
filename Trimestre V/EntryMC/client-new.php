@@ -167,7 +167,7 @@ if($_POST){
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Id_Usuario" class="bmd-label-floating"></label>
-										<input class="form-control form-control-sm" type="text" name="Id_Usuario" id="Id_Usuario" placeholder="El Codigo es Asignado por el Sistema" aria-label=".form-control-sm example" maxlength="27">
+										<input class="form-control form-control-sm" type="text" name="Id_Usuario" id="Id_Usuario" placeholder="El Codigo es Asignado por el Sistema" aria-label=".form-control-sm example" readOnly maxlength="27">
 									</div>
 								</div>
 								<div class="col-10 col-md-7">
