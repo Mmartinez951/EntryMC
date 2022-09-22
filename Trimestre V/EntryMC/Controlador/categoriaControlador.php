@@ -24,8 +24,9 @@ if(isset($_POST['Modificar'])){
     $obj->Modificar();
 }
 
-if(isset($_POST['Eliminar'])){
-    $obj->Eliminar();
+if(isset($_POST['Elimina'])){
+  echo "llegue";
+    $obj->limpiar();
 }
 if(isset($_POST['limpia'])){
     $obj->limpiar();

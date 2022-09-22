@@ -6,40 +6,6 @@ if($_POST){
 }
 $cone = new Conexion();
 $c = $cone -> conectando();
-/* $key = $_GET['key'];
-if($Id_Usuario>0){
-
-
-                $conet = new Conexion();
-                $c = $conet->conectando();
-                $query="select * from usuarios where Id_Usuario = Id_Usuario";
-                $resultado = mysqli_query($c, $query);
-                $arreglo = mysqli_fetch_array($resultado); 
-                $obj->Id_Usuario = $arreglo[0];
-				$obj->Usuario_Nombre = $arreglo[1];
-				$obj->Usuario_Apellido = $arreglo[2];
-				$obj->Tipo_Documento = $arreglo[3];
-				$obj->Usuario_NumeroDocumento = $arreglo[4];
-				$obj->Usuario_Direccion = $arreglo[5];
-				$obj->Usuario_Correo = $arreglo[6];
-				$obj->Usuario_Celular = $arreglo[7];
-				$obj->Usuario_Rol = $arreglo[8];
-				$obj->Usuario_Login = $arreglo[9];
-				$obj->Usuario_Password = $arreglo[10];
-            
-            }else{
-                $obj->Id_Usuario = "";
-                $obj->Usuario_Nombre = "";
-				$obj->Usuario_Apellido = "";
-				$obj->Tipo_Documento = "";
-				$obj->Usuario_NumeroDocumento = "";
-				$obj->Usuario_Direccion = "";
-				$obj->Usuario_Correo = "";
-				$obj->Usuario_Celular = "";
-				$obj->Usuario_Rol = "";
-				$obj->Usuario_Login = "";
-				$obj->Usuario_Password = "";
-            } */
 $queryCantUsuarios = "SELECT COUNT(*) AS TotalRegistros FROM usuarios";
 $ejecuta = mysqli_query($c,$queryCantUsuarios);
 $TotalRegistros = mysqli_fetch_array($ejecuta)['TotalRegistros'];
@@ -236,7 +202,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 			
 			
 			<!-- Content here-->
-			<div class="container-fluid" >
+			<div class="container-fluid">
 				<div class="table-responsive">
 					<table class="table table-dark table-sm">
 						<thead>
@@ -281,14 +247,19 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 							
 								</td>
 								<td>
-									<a href="client-update.php" class="btn btn-success">
+									<a href=" <?php if($usuarios[0] <> ''){
+										echo "client-update.php?key=".urlencode($usuarios[0]);
+									}  ?>"
+									class="btn btn-success">
 									<i class="fas fa-edit"></i>
 									</a>
 								</td>
 								<td>
-									<form action="client-list.php">
-										<button type="button" class="btn btn-warning" name="Eliminar">
-		  									<i class="far fa-trash-alt"></i>
+									<a href=" <?php if($usuarios[0] <> ''){
+										echo "client-delete.php?key=".urlencode($usuarios[0]);
+									}  ?>"
+										class="btn btn-warning">
+		  								<i class="far fa-trash-alt"></i>
 										</button>
 									</form>
 								</td>

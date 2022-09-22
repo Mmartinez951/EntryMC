@@ -44,9 +44,6 @@ class Categorias{
                                        $c = $conect->conectando();
                                        $query = "select * from Usuarios where Numero_Documento = '$this->Usuario_NumeroDocumento'";
                                        $ejecuta = mysqli_query($c, $query);
-                                       if(mysqli_fetch_array($ejecuta)){
-                                          echo "<script> alert('El Usuario Ya Existe en el Sistema')</script>";
-                                       }else{
                                           $update = "update usuarios set 
                                                                            Nombre_Usuario='$this->Usuario_Nombre',
                                                                            Apellido_Usuario='$this->Usuario_Apellido',
@@ -65,25 +62,21 @@ class Categorias{
                                           
                                        }
 
-                    }
-                    function Eliminar(){
-
+                    
+                    function limpiar(){
+                                       try{
                                        $conect = new Conexion();
                                        $c = $conect->conectando();
-                                       $delete = "delete from usuarios where Id_Usuario='$this->Id_Usuario'";
-                                       $d=mysqli_query($c,$delete);
-                                        
-                                       
-                                       
-                                       if(mysql_errno()==1451){
-                                          echo "<script> alert('El Usuario No fue Eliminado en el Sistema porque tiene Registros Asociados')</script>";
-                                       }else{
-                                          echo "<script> alert('el Usuario fue Eliminado en el Sistema')</script>";
-                                       }
+                                       $query = "delete from usuarios where Id_Usuario='$this->Id_Usuario'";
+                                       $d=mysqli_query($c,$query);
+                                    }catch(e){
+                                          
+                                          echo "<script> alert('El Usuario fue Eliminado en el Sistema')</script>";
+                                          
+                                    }
+
                     }
-                    function limpiar(){
-                        
-                    }
-                    }
+                    
+                  }             
 
 ?>
