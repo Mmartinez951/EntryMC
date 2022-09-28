@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-09-2022 a las 01:27:42
+-- Tiempo de generación: 28-09-2022 a las 04:50:07
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `entry_mc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estados_usuarios`
+--
+
+CREATE TABLE `estados_usuarios` (
+  `Id_Estado_Usuario` int(11) NOT NULL,
+  `Nombre_Estado` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estados_usuarios`
+--
+
+INSERT INTO `estados_usuarios` (`Id_Estado_Usuario`, `Nombre_Estado`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -296,45 +315,10 @@ CREATE TABLE `usuarios` (
   `Correo_Electronico` varchar(25) NOT NULL,
   `Celular` int(11) DEFAULT NULL,
   `Nombre_Rol` int(11) NOT NULL,
+  `Estado_Usuario` int(11) NOT NULL,
   `Login` varchar(50) NOT NULL,
   `Password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`Id_Usuario`, `Nombre_Usuario`, `Apellido_Usuario`, `Tipo_Documento`, `Numero_Documento`, `Direccion`, `Correo_Electronico`, `Celular`, `Nombre_Rol`, `Login`, `Password`) VALUES
-(1, 'ANTONIO', 'HERNANDEZ', 1, 988189910, 'DIAGONAL25', 'AH@GMAIL.COM', 2147483647, 1, '11020112930', '11020112930'),
-(2, 'MANUEL', 'SANCHEZ', 1, 251949177, 'CALLE 20', 'MS@GMAIL.COM', 925448694, 2, '12129866285', '12129866285'),
-(3, 'JOSE', 'CARO', 2, 760708434, 'CALLE 80', 'JC@GMAIL.COM', 2147483647, 1, '94846476578', '94846476578'),
-(4, 'FRANCISCO', 'GARCIA', 1, 356308839, 'DIAGONAL25', 'FG@GMAIL.COM', 2147483647, 4, '11020112933', '11020112933'),
-(5, 'DAVID', 'CRUZ', 1, 306432623, 'CARRERA 69', 'DC@GMAIL.COM', 2147483647, 3, '94846476579', '94846476579'),
-(6, 'JUAN', 'ACERO', 1, 246809954, 'CALLE 80', 'JA@GMAIL.COM', 435165925, 3, '11020112935', '11020112935'),
-(7, 'JAVIER', 'MONROY', 2, 611148123, 'CALLE 20', 'JM@GMAIL.COM', 2147483647, 2, '94846476580', '94846476580'),
-(8, 'JOSE ANTONIO', 'VILLA', 1, 779078907, 'CARRERA 89', 'JAV@GMAIL.COM', 2147483647, 1, '94846476582', '94846476582'),
-(9, 'DANIEL', 'PIÑEROS', 1, 801409816, 'DIAGONAL70', 'DP@GMAIL.COM', 2147483647, 4, '45676754978', '45676754978'),
-(10, 'FRANCISCO JAVIER', 'ROCHA', 1, 930031800, 'CALLE 20', 'FJR@GMAIL.COM', 2147483647, 1, '11020112939', '11020112939'),
-(11, 'JOSE LUIS', 'BLANCO', 3, 904426697, 'CARRERA 69', 'JB@GMAIL.COM', 1899888869, 3, '94846476581', '94846476581'),
-(12, 'CARLOS', 'MARTÍNEZ', 1, 688965807, 'CARRERA 89', 'CM@GMAIL.COM', 2147483647, 4, '94846476586', '94846476586'),
-(13, 'JESUS', 'VILLAMIZAR', 1, 386480846, 'DIAGONAL70', 'JV@GMAIL.COM', 2147483647, 1, '11020112931', '11020112931'),
-(14, 'ALEJANDRO', 'ARISTIZABAL', 1, 850504752, 'CALLE 20', 'AA@GMAIL.COM', 2147483647, 1, '24566754981', '24566754981'),
-(15, 'MIGUEL', 'CONTRERAS', 1, 131128675, 'CARRERA 69', 'MC@GMAIL.COM', 2147483647, 1, '24676754980', '24676754980'),
-(16, 'JOSE MANUEL', 'CASTAÑO', 1, 645897680, 'CALLE 80', 'JMC@GMAIL.COM', 2147483647, 4, '94846476583', '94846476583'),
-(17, 'RAFAEL', 'CASTELLANOS', 1, 264575827, 'CARRERA 89', 'RC@GMAIL.COM', 2147483647, 1, '11020112932', '11020112932'),
-(18, 'MIGUEL ANGEL', 'RODRIGUEZ', 2, 836094855, 'DIAGONAL25', 'MAR@GMAIL.COM', 2147483647, 4, '24567654982', '24567654982'),
-(19, 'PABLO', 'GOMEZ', 1, 594287826, 'CALLE 20', 'PG@GMAIL.COM', 2147483647, 3, '24566754979', '24566754979'),
-(20, 'PEDRO', 'ALFONSO', 1, 599357056, 'CARRERA 69', 'PAL@GMAIL.COM', 2147483647, 1, '11020112934', '11020112934'),
-(21, 'ANGEL', 'OSPINA', 1, 914964600, 'DIAGONAL70', 'ANO@GMAIL.COM', 2126075550, 1, '24676754983', '24676754983'),
-(22, 'SERGIO', 'TORRES', 1, 543728094, 'CALLE 80', 'SET@GMAIL.COM', 775951078, 4, '11020112936', '11020112936'),
-(23, 'DIEGO ', 'GUZMÁN', 3, 563752225, 'DIAGONAL25', 'DIG@GMAIL.COM', 2147483647, 2, '59898798765', '59898798765'),
-(24, 'FERNANDO', 'CASTIBLANCO', 1, 900319255, 'CARRERA 69', 'FEC@GMAIL.COM', 2147483647, 1, '59898794765', '59898794765'),
-(25, 'JORGE', 'SALGADO', 1, 834576419, 'CARRERA 89', 'JS@GMAIL.COM', 2147483647, 4, '11020112937', '11020112937'),
-(26, 'LUIS', 'DELGADO', 1, 651531115, 'CALLE 20', 'LDE@GMAIL.COM', 2147483647, 1, '94846476587', '94846476587'),
-(27, 'ALBERTO', 'ÁVILA', 3, 324792605, 'CALLE 80', 'AAV@GMAIL.COM', 2147483647, 4, '11020112938', '11020112938'),
-(28, 'ALVARO', 'BUSTOS', 1, 774010329, 'CARRERA 69', 'ABU@GMAIL.COM', 2147483647, 1, '12129866286', '12129866286'),
-(29, 'JUAN CARLOS', 'RODRIGUEZ', 2, 487672409, 'DIAGONAL25', 'JCR@GMAIL.COM', 1530194161, 3, '94846476585', '94846476585'),
-(30, 'ADRIAN', 'GARCIA', 3, 402125895, 'CALLE 20', 'ADG@GMAIL.COM', 2147483647, 1, '94846476584', '94846476584');
 
 -- --------------------------------------------------------
 
@@ -393,6 +377,12 @@ INSERT INTO `vehiculos` (`Id_Vehiculo`, `Codigo`, `Placa`, `Marca`, `Modelo`, `C
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `estados_usuarios`
+--
+ALTER TABLE `estados_usuarios`
+  ADD PRIMARY KEY (`Id_Estado_Usuario`);
 
 --
 -- Indices de la tabla `estados_vehiculo`
@@ -462,7 +452,8 @@ ALTER TABLE `tipo_documentos`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`Id_Usuario`),
   ADD KEY `Tipo_Documento` (`Tipo_Documento`),
-  ADD KEY `Nombre_Rol` (`Nombre_Rol`);
+  ADD KEY `Nombre_Rol` (`Nombre_Rol`),
+  ADD KEY `Estado_Usuario` (`Estado_Usuario`);
 
 --
 -- Indices de la tabla `vehiculos`
@@ -475,6 +466,12 @@ ALTER TABLE `vehiculos`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `estados_usuarios`
+--
+ALTER TABLE `estados_usuarios`
+  MODIFY `Id_Estado_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estados_vehiculo`
@@ -584,7 +581,8 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`Tipo_Documento`) REFERENCES `tipo_documentos` (`Id_Tipo_Documento`),
-  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`Nombre_Rol`) REFERENCES `roles` (`Id_Rol`);
+  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`Nombre_Rol`) REFERENCES `roles` (`Id_Rol`),
+  ADD CONSTRAINT `usuarios_ibfk_3` FOREIGN KEY (`Estado_Usuario`) REFERENCES `estados_usuarios` (`Id_Estado_Usuario`);
 
 --
 -- Filtros para la tabla `vehiculos`
