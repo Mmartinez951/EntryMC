@@ -9,6 +9,7 @@ class Categorias{
                 public $Usuario_Correo;
                 public $Usuario_Celular;
                 public $Usuario_Rol;
+                public $Estado_Usuario;
                 public $Usuario_Login;
                 public $Usuario_Password;
                 
@@ -30,6 +31,7 @@ class Categorias{
                                                                                         '$this->Usuario_Correo',
                                                                                         '$this->Usuario_Celular',
                                                                                         '$this->Usuario_Rol',
+                                                                                        '$this->Estado_Usuario',
                                                                                         '$this->Usuario_Login',
                                                                                         '$this->Usuario_Password'
                                                                                         )";
@@ -44,9 +46,6 @@ class Categorias{
                                        $c = $conect->conectando();
                                        $query = "select * from Usuarios where Numero_Documento = '$this->Usuario_NumeroDocumento'";
                                        $ejecuta = mysqli_query($c, $query);
-                                       if(mysqli_fetch_array($ejecuta)){
-                                          echo "<script> alert('El Usuario Ya Existe en el Sistema')</script>";
-                                       }else{
                                           $update = "update usuarios set 
                                                                            Nombre_Usuario='$this->Usuario_Nombre',
                                                                            Apellido_Usuario='$this->Usuario_Apellido',
@@ -56,34 +55,35 @@ class Categorias{
                                                                            Correo_Electronico='$this->Usuario_Correo',
                                                                            Celular='$this->Usuario_Celular',
                                                                            Nombre_Rol='$this->Usuario_Rol',
+                                                                           Estado_Usuario='$this->Estado_Usuario',
                                                                            Login='$this->Usuario_Login',
                                                                            Password='$this->Usuario_Password'
                                                                            where Id_Usuario='$this->Id_Usuario'";
                                           //echo $update;
                                           mysqli_query($c,$update);
-                                          echo "<script> alert('El Usuario fue Modificado en el Sistema')</script>";
+                                          echo "<script>
+                                                    alert('Los datos fueron actualizados correctamente');
+                                                    location.href='client-list.php';
+                                                </script>";
                                           
                                        }
 
-                    }
+                    
                     function Eliminar(){
-
+                                       try{
                                        $conect = new Conexion();
                                        $c = $conect->conectando();
-                                       $delete = "delete from usuarios where Id_Usuario='$this->Id_Usuario'";
-                                       $d=mysqli_query($c,$delete);
-                                        
-                                       
-                                       
-                                       if(mysql_errno()==1451){
-                                          echo "<script> alert('El Usuario No fue Eliminado en el Sistema porque tiene Registros Asociados')</script>";
-                                       }else{
-                                          echo "<script> alert('el Usuario fue Eliminado en el Sistema')</script>";
-                                       }
+                                       $query = "delete from usuarios where Id_Usuario='$this->Id_Usuario'";
+                                       $d=mysqli_query($c,$query);
+                                    }catch(e){
+                                        echo "<script>
+                                                alert('Los datos fueron eliminados correctamente');
+                                                location.href='client-list.php';
+                                            </script>";
+                                    }
+
                     }
-                    function limpiar(){
-                        
-                    }
-                    }
+                    
+                  }             
 
 ?>

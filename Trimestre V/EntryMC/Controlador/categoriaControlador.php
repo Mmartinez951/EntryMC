@@ -12,6 +12,7 @@ if ($_POST){
     $obj->Usuario_Correo = $_POST['Usuario_Correo'];
     $obj->Usuario_Celular = $_POST['Usuario_Celular'];
     $obj->Usuario_Rol = $_POST['Usuario_Rol'];
+    $obj->Estado_Usuario = $_POST['Estado_Usuario'];
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
