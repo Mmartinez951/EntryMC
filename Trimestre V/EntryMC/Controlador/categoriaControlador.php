@@ -12,6 +12,7 @@ if ($_POST){
     $obj->Usuario_Correo = $_POST['Usuario_Correo'];
     $obj->Usuario_Celular = $_POST['Usuario_Celular'];
     $obj->Usuario_Rol = $_POST['Usuario_Rol'];
+    $obj->Estado_Usuario = $_POST['Estado_Usuario'];
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
@@ -24,9 +25,8 @@ if(isset($_POST['Modificar'])){
     $obj->Modificar();
 }
 
-if(isset($_POST['Elimina'])){
-  echo "llegue";
-    $obj->limpiar();
+if(isset($_POST['Eliminar'])){
+    $obj->Eliminar();
 }
 if(isset($_POST['limpia'])){
     $obj->limpiar();

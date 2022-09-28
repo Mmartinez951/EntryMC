@@ -16,6 +16,7 @@ if($_POST){
     $obj->Usuario_Correo = $_POST['Usuario_Correo'];
     $obj->Usuario_Celular = $_POST['Usuario_Celular'];
     $obj->Usuario_Rol = $_POST['Usuario_Rol'];
+	$obj->Estado_Usuario = $_POST['Estado_Usuario'];
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
@@ -36,8 +37,9 @@ $obj->Usuario_Direccion = $arreglo[5];
 $obj->Usuario_Correo = $arreglo[6];
 $obj->Usuario_Celular = $arreglo[7];
 $obj->Usuario_Rol = $arreglo[8];
-$obj->Usuario_Login = $arreglo[9];
-$obj->Usuario_Password = $arreglo[10];
+$obj->Estado_Usuario = $arreglo[9];
+$obj->Usuario_Login = $arreglo[10];
+$obj->Usuario_Password = $arreglo[11];
 ?>
 
 <!DOCTYPE html>
@@ -169,7 +171,7 @@ $obj->Usuario_Password = $arreglo[10];
 						<a href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE</a>
 					</li> -->
 					<li>
-						<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE CLIENTES</a>
+						<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE USUARIOS</a>
 					</li>
 				</ul>	
 			</div>
@@ -263,6 +265,25 @@ $obj->Usuario_Password = $arreglo[10];
 	                                </select>
 									</div>
 								</div>
+								<div class="col-12 col-md-7">
+								<div class="form-group">
+								<label for="Estado_Usuario" class="bmd-label-floating">Estado</label>
+	                                <select class="form-control" name="Estado_Usuario" id="Estado_Usuario">
+										<?php
+											$query ="SELECT * FROM Estados_Usuarios";
+											$NombreEstados = mysqli_query($c,$query);
+
+											while($NombreEstado = mysqli_fetch_array($NombreEstados)){
+										?>
+											<option value = "<?php echo $NombreEstado[0]?>">
+											<?php echo $NombreEstado[1]?>
+											</option>
+										<?php
+										}
+										?>    	
+	                                </select>
+								</div>
+								</div>
 								<div class="col-10 col-md-7">
 								<div class="form-group">
 										<label for="Usuario_Login" class="bmd-label-floating">Login</label>
@@ -277,12 +298,8 @@ $obj->Usuario_Password = $arreglo[10];
 								</div>
 							</div>
 						</div>
-						<p class="text-center" style="margin-top: 40px;" a href="client-list.php">
-						<button type="submit" class="btn btn-raised btn-success btn-sm" name="Modificar"><i class="fas fa-sync-alt"></i> &nbsp; ACTUALIZAR</button>
-				
-						<p class="text-center" style="margin-top: 40px;" a href="client-list.php">
-						<button type="submit" class="btn btn-raised btn-success btn-danger" name="Eliminar"><i class="fas fa-trash"></i>&nbsp; ELIMINAR</button>
-						
+						<p class="text-center" style="margin-top: 40px;">
+						<button type="submit" class="btn btn-raised btn-success btn-sm" name="Modificar" ><i class="fas fa-sync-alt"> </i>&nbsp;ACTUALIZAR</button>                                   
 						</p>
 					</fieldset>
 					<br><br><br>

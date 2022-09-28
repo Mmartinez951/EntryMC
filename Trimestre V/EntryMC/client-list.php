@@ -20,24 +20,27 @@ $desde = ($pagina-1)*$maximoRegistros;
 $totalRegistros=ceil($TotalRegistros/$maximoRegistros);
 
 if(isset($_POST['buscarUsuario'])){
-    $query="SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, Login, Password
+    $query="SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular,EU.Nombre_Estado, Login, Password
 	FROM usuarios U 
-	INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento 
+	INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento
+	INNER JOIN estados_usuarios EU ON U.Estado_Usuario = EU.ID_ESTADO_USUARIO
 	INNER JOIN roles R ON U.Nombre_Rol = R.Id_Rol WHERE U.Nombre_Usuario like '%$obj->nombreUsuario%' limit $desde, $maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
     $usuarios = mysqli_fetch_array($ejecuta);
-}else{$query="SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, Login, Password
+}else{$query="SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, EU.Nombre_Estado, Login, Password
 	FROM usuarios U 
 	INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento 
+	INNER JOIN estados_usuarios EU ON U.Estado_Usuario = EU.ID_ESTADO_USUARIO
 	INNER JOIN roles R ON U.Nombre_Rol = R.Id_Rol ORDER BY U.Id_Usuario limit $desde,$maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
     $usuarios = mysqli_fetch_array($ejecuta);
 }
 
 
-$query = "SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, Login, Password
+$query = "SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, EU.Nombre_Estado, Login, Password
 FROM usuarios U 
 INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento 
+INNER JOIN estados_usuarios EU ON U.Estado_Usuario = EU.ID_ESTADO_USUARIO
 INNER JOIN roles R ON U.Nombre_Rol = R.Id_Rol ORDER BY U.Id_Usuario limit $desde,$maximoRegistros" ;
 
 $ejecuta = mysqli_query($c,$query);
@@ -216,6 +219,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 								<th>Dirección</th>
 								<th>Correo Electrónico</th>
 								<th>Celular</th>
+								<th>Estado</th>
 								<th>Login</th>
 								<th>Password</th>
 								<th>ACTUALIZAR</th>
@@ -243,6 +247,8 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 								<td><?php echo $usuarios[8]?></td>
 								<td><?php echo $usuarios[9]?></td>
 								<td><?php echo $usuarios[10]?></td>
+								<td><?php echo $usuarios[11]?></td>
+								
 							
 							
 								</td>

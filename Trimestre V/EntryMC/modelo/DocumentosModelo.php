@@ -9,6 +9,7 @@ class Categorias{
                 public $Usuario_Correo;
                 public $Usuario_Celular;
                 public $Usuario_Rol;
+                public $Estado_Usuario;
                 public $Usuario_Login;
                 public $Usuario_Password;
                 
@@ -30,6 +31,7 @@ class Categorias{
                                                                                         '$this->Usuario_Correo',
                                                                                         '$this->Usuario_Celular',
                                                                                         '$this->Usuario_Rol',
+                                                                                        '$this->Estado_Usuario',
                                                                                         '$this->Usuario_Login',
                                                                                         '$this->Usuario_Password'
                                                                                         )";
@@ -53,26 +55,31 @@ class Categorias{
                                                                            Correo_Electronico='$this->Usuario_Correo',
                                                                            Celular='$this->Usuario_Celular',
                                                                            Nombre_Rol='$this->Usuario_Rol',
+                                                                           Estado_Usuario='$this->Estado_Usuario',
                                                                            Login='$this->Usuario_Login',
                                                                            Password='$this->Usuario_Password'
                                                                            where Id_Usuario='$this->Id_Usuario'";
                                           //echo $update;
                                           mysqli_query($c,$update);
-                                          echo "<script> alert('El Usuario fue Modificado en el Sistema')</script>";
+                                          echo "<script>
+                                                    alert('Los datos fueron actualizados correctamente');
+                                                    location.href='client-list.php';
+                                                </script>";
                                           
                                        }
 
                     
-                    function limpiar(){
+                    function Eliminar(){
                                        try{
                                        $conect = new Conexion();
                                        $c = $conect->conectando();
                                        $query = "delete from usuarios where Id_Usuario='$this->Id_Usuario'";
                                        $d=mysqli_query($c,$query);
                                     }catch(e){
-                                          
-                                          echo "<script> alert('El Usuario fue Eliminado en el Sistema')</script>";
-                                          
+                                        echo "<script>
+                                                alert('Los datos fueron eliminados correctamente');
+                                                location.href='client-list.php';
+                                            </script>";
                                     }
 
                     }

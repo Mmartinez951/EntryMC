@@ -17,6 +17,7 @@ if($_POST){
     $obj->Usuario_Correo = $_POST['Usuario_Correo'];
     $obj->Usuario_Celular = $_POST['Usuario_Celular'];
     $obj->Usuario_Rol = $_POST['Usuario_Rol'];
+	$obj->Estado_Usuario = $_POST['Estado_Usuario'];
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
@@ -243,6 +244,25 @@ if($_POST){
 										}
 										?>    
 											
+	                                </select>
+									</div>
+								</div>
+								<div class="col-12 col-md-7">
+								<div class="form-group">
+								<label for="Estado_Usuario" class="bmd-label-floating">Estado</label>
+	                                <select class="form-control" name="Estado_Usuario" id="Estado_Usuario">
+										<?php
+											$query ="SELECT * FROM Estados_Usuarios";
+											$NombreEstados = mysqli_query($c,$query);
+
+											while($NombreEstado = mysqli_fetch_array($NombreEstados)){
+										?>
+											<option value = "<?php echo $NombreEstado[0]?>">
+											<?php echo $NombreEstado[1]?>
+											</option>
+										<?php
+										}
+										?>    	
 	                                </select>
 									</div>
 								</div>
