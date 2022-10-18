@@ -1,12 +1,12 @@
 <?php
 include("./Conexion/Conexion.php");
-include("./Controlador/categoriaControlador.php");
+include("./Controlador/VehiculoControlador.php");
 if($_POST){
-    $obj->nombreUsuario = $_POST['Nombre_Usuario'];
+    $obj->Placa = $_POST['Placa'];
 }
 $cone = new Conexion();
 $c = $cone -> conectando();
-$queryCantUsuarios = "SELECT COUNT(*) AS TotalRegistros FROM usuarios";
+$queryCantUsuarios = "SELECT COUNT(*) AS TotalRegistros FROM vehiculos";
 $ejecuta = mysqli_query($c,$queryCantUsuarios);
 $TotalRegistros = mysqli_fetch_array($ejecuta)['TotalRegistros'];
 
@@ -20,33 +20,28 @@ $desde = ($pagina-1)*$maximoRegistros;
 $totalRegistros=ceil($TotalRegistros/$maximoRegistros);
 
 if(isset($_POST['buscarUsuario'])){
-    $query="SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular,EU.Nombre_Estado, Login, Password
-	FROM usuarios U 
-	INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento
-	INNER JOIN estados_usuarios EU ON U.Estado_Usuario = EU.ID_ESTADO_USUARIO
-	INNER JOIN roles R ON U.Nombre_Rol = R.Id_Rol WHERE U.Nombre_Usuario like '%$obj->nombreUsuario%' limit $desde, $maximoRegistros";
+    $query="SELECT Id_Vehiculo, Codigo, Placa, marca, Modelo,color,TP.Nombre_Tipo_Vehiculo, velocidad_MAX,EV.Nombre_Estado   FROM vehiculos V
+	INNER JOIN tipos_vehiculo TP ON V.Tipo_Vehiculo= TP.Id_Tipo_Vehiculo
+	INNER JOIN estados_vehiculo EV ON V.Estado_Vehiculo = EV.Id_Estado_Vehiculo ORDER BY Id_Vehiculo WHERE Placa like '%$obj->Placa%' limit $desde, $maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
-    $usuarios = mysqli_fetch_array($ejecuta);
-}else{$query="SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, EU.Nombre_Estado, Login, Password
-	FROM usuarios U 
-	INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento 
-	INNER JOIN estados_usuarios EU ON U.Estado_Usuario = EU.ID_ESTADO_USUARIO
-	INNER JOIN roles R ON U.Nombre_Rol = R.Id_Rol ORDER BY U.Id_Usuario limit $desde,$maximoRegistros";
+    $Vehiculos = mysqli_fetch_array($ejecuta);
+	
+}else{$query="SELECT Id_Vehiculo, Codigo, Placa, marca, Modelo,color,TP.Nombre_Tipo_Vehiculo, velocidad_MAX,EV.Nombre_Estado   FROM vehiculos V
+	INNER JOIN tipos_vehiculo TP ON V.Tipo_Vehiculo= TP.Id_Tipo_Vehiculo
+	INNER JOIN estados_vehiculo EV ON V.Estado_Vehiculo = EV.Id_Estado_Vehiculo ORDER BY Id_Vehiculo limit $desde,$maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
-    $usuarios = mysqli_fetch_array($ejecuta);
+    $Vehiculos = mysqli_fetch_array($ejecuta);
 }
 
 
-$query = "SELECT Id_Usuario, Nombre_Usuario, Apellido_Usuario, R.Nombre_Rol, Nombre_Documento, Numero_Documento, Direccion, Correo_Electronico, Celular, EU.Nombre_Estado, Login, Password
-FROM usuarios U 
-INNER JOIN tipo_documentos TP ON U.Tipo_Documento = TP.Id_Tipo_Documento 
-INNER JOIN estados_usuarios EU ON U.Estado_Usuario = EU.ID_ESTADO_USUARIO
-INNER JOIN roles R ON U.Nombre_Rol = R.Id_Rol ORDER BY U.Id_Usuario limit $desde,$maximoRegistros" ;
+$query = "SELECT Id_Vehiculo, Codigo, Placa, marca, Modelo,color,TP.Nombre_Tipo_Vehiculo, velocidad_MAX,EV.Nombre_Estado   FROM vehiculos V
+INNER JOIN tipos_vehiculo TP ON V.Tipo_Vehiculo= TP.Id_Tipo_Vehiculo
+INNER JOIN estados_vehiculo EV ON V.Estado_Vehiculo = EV.Id_Estado_Vehiculo ORDER BY Id_Vehiculo limit $desde,$maximoRegistros" ;
 
 $ejecuta = mysqli_query($c,$query);
-$usuarios = mysqli_fetch_array ($ejecuta);
+$Vehiculos = mysqli_fetch_array ($ejecuta);
 
-
+ 
 
 /* echo $TotalRegistros; */
 ?>
@@ -166,20 +161,20 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE USUARIOS
+					<i class="fas fa-clipboard-list fa-fw"></i><i class="fas fa-bus"></i> &nbsp; LISTA DE VEHÍCULOS
 				</h3>
 				<p class="text-justify">
-					GESTIÓN DE USUARIOS DE LA PLATAFORMA EntryMC 
+					GESTIÓN DE VEHÍCULOS DE LA PLATAFORMA EntryMC 
 				</p>
 			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</a>
+						<a href="Vehiculo-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR VEHÍCULO</a>
 					</li>
 					<li>
-						<a class="active" href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE USUARIOS</a>
+						<a class="active" href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE VEHÍCULOS</a>
 					</li>
 				</ul>	
 			</div>
@@ -189,7 +184,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 						<div class="row justify-content-md-center">
 							<div class="col-12 col-md-6">
 								<div class="form-group">
-									<label for="inputSearch" class="bmd-label-floating">¿Qué cliente estas buscando?</label>
+									<label for="inputSearch" class="bmd-label-floating">¿Qué vehículo estas buscando?</label>
 									<input type="text" class="form-control" name="buscarUsuario" id="inputSearch" maxlength="30">
 								</div>
 							</div>
@@ -211,23 +206,20 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
-								<th>Nombre</th>
-								<th>Apellido</th>
-								<th>Rol</th>
-								<th>Tipo Documento</th>
-								<th>Numero Documento</th>
-								<th>Dirección</th>
-								<th>Correo Electrónico</th>
-								<th>Celular</th>
+								<th>Codigo</th>
+								<th>Placa</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Color</th>
+								<th>Tipo Vehículo</th>
+								<th>Velocidad</th>
 								<th>Estado</th>
-								<th>Login</th>
-								<th>Password</th>
 								<th>ACTUALIZAR</th>
 								<th>ELIMINAR</th>
 							</tr>
 						</thead>
 							<?php
-							if($usuarios==0){
+							if($Vehiculos==0){
 								echo"No hay Registros";
 							}else{
 								do{
@@ -236,33 +228,30 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 
 						<tbody>
 							<tr class="text-center" >
-								<td><?php echo $usuarios[0]?></td>
-								<td><?php echo $usuarios[1]?></td>
-								<td><?php echo $usuarios[2]?></td>
-								<td><?php echo $usuarios[3]?></td>
-								<td><?php echo $usuarios[4]?></td>
-								<td><?php echo $usuarios[5]?></td>
-								<td><?php echo $usuarios[6]?></td>
-								<td><?php echo $usuarios[7]?></td>
-								<td><?php echo $usuarios[8]?></td>
-								<td><?php echo $usuarios[9]?></td>
-								<td><?php echo $usuarios[10]?></td>
-								<td><?php echo $usuarios[11]?></td>
+								<td><?php echo $Vehiculos[0]?></td>
+								<td><?php echo $Vehiculos[1]?></td>
+								<td><?php echo $Vehiculos[2]?></td>
+								<td><?php echo $Vehiculos[3]?></td>
+								<td><?php echo $Vehiculos[4]?></td>
+								<td><?php echo $Vehiculos[5]?></td>
+								<td><?php echo $Vehiculos[6]?></td>
+								<td><?php echo $Vehiculos[7]?></td>
+								<td><?php echo $Vehiculos[8]?></td>
 								
 							
 							
 								</td>
 								<td>
-									<a href=" <?php if($usuarios[0] <> ''){
-										echo "client-update.php?key=".urlencode($usuarios[0]);
+									<a href=" <?php if($Vehiculos[0] <> ''){
+										echo "Vehiculo-update.php?key=".urlencode($Vehiculos[0]);
 									}  ?>"
 									class="btn btn-success">
 									<i class="fas fa-edit"></i>
 									</a>
 								</td>
 								<td>
-									<a href=" <?php if($usuarios[0] <> ''){
-										echo "client-delete.php?key=".urlencode($usuarios[0]);
+									<a href=" <?php if($Vehiculos[0] <> ''){
+										echo "client-delete.php?key=".urlencode($Vehiculos[0]);
 									}  ?>"
 										class="btn btn-warning">
 		  								<i class="far fa-trash-alt"></i>
@@ -271,7 +260,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 								</td>
 							</tr>
 							<?php
-								}while($usuarios = mysqli_fetch_array($ejecuta));
+								}while($Vehiculos = mysqli_fetch_array($ejecuta));
 							}
 							?>
 						</tbody>
