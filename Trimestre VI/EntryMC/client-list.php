@@ -95,7 +95,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Usuario <br><small class="roboto-condensed-light">Rol</small>
+						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -109,16 +109,16 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-sliders-h"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="client-list.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
+									<a href="client-new.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
-									<a href="Vehículos.html"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
+									<a href="Vehiculo-new.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
 								</li>
 								<li>
-									<a href="roles.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
+									<a href="client-search.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
 								</li>
 								<li>
-									<a href="permisos.html"><i class="fas fa-key"></i> &nbsp; Permisos</a>
+									<a href="client-search.html"><i class="fas fa-key"></i> &nbsp; Permisos</a>
 								</li>
 							</ul>
 						</li>
@@ -127,10 +127,10 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-keyboard"></i> &nbsp; Registros Patios <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="Entrada-Vehiculo.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
+									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
 								</li>
 								<li>
-									<a href="salida-vehiculos.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
+									<a href="item-list.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
 								</li>
 							</ul>
 						</li>
@@ -139,7 +139,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-search"></i> &nbsp; Consultas <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="orden-trabajo.html"><i class="fas fa-ticket-alt"></i> &nbsp; Ordenes de Trabajo</a>
+									<a href="reservation-new.html"><i class="fas fa-ticket-alt"></i> &nbsp; Ordenes de Trabajo</a>
 								</li>
 						</li>
 							</ul>
@@ -155,7 +155,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 				<a href="#" class="float-left show-nav-lateral">
 					<i class="fas fa-exchange-alt"></i>
 				</a>
-				<a href="user-list.php">
+				<a href="user-update.html">
 					<i class="fas fa-user-cog"></i>
 				</a>
 				<a href="#" class="btn-exit-system">
@@ -184,7 +184,7 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 				</ul>	
 			</div>
 			<div class="container-fluid">
-				<form class="form-neon" action="client-list.php">
+				<form class="form-neon" action="">
 					<div class="container-fluid">
 						<div class="row justify-content-md-center">
 							<div class="col-12 col-md-6">
@@ -261,19 +261,45 @@ $usuarios = mysqli_fetch_array ($ejecuta);
 									</a>
 								</td>
 								<td>
-									<a href=" <?php if($usuarios[0] <> ''){
+									<!--<a href=" <?php if($usuarios[0] <> ''){
 										echo "client-delete.php?key=".urlencode($usuarios[0]);
 									}  ?>"
 										class="btn btn-warning">
 		  								<i class="far fa-trash-alt"></i>
 										</button>
-									</form>
+									</form>-->
+									<!-- Button trigger modal -->
+								<button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter">
+								<i class="far fa-trash-alt"></i> <class="btn btn-warning>
+								</button>
+
+								<!-- Modal -->
+								<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">ELIMINAR USUARIO</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>¿Esta seguro de eliminar el usuario?</p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+										<button type="submit" class="btn btn-raised btn-success btn-danger" a href="Eliminar_Usuario.php"></i>&nbsp; ELIMINAR</button>
+									</div>
+									</div>
+								</div>
+								</div>
 								</td>
 							</tr>
 							<?php
 								}while($usuarios = mysqli_fetch_array($ejecuta));
 							}
 							?>
+							
 						</tbody>
 					</table>
 				</div>

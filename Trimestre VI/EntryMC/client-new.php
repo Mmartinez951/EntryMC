@@ -5,6 +5,7 @@ $obj = new Categorias();
 $cone = new Conexion();
 $c = $cone->conectando();
 
+
 if($_POST){
 
     $obj->Id_Usuario = $_POST['Id_Usuario'];
@@ -20,43 +21,6 @@ if($_POST){
     $obj->Usuario_Login = $_POST['Usuario_Login'];
     $obj->Usuario_Password = $_POST['Usuario_Password'];
 }
-$key = $_GET['key'];
-//echo $key; 
-if ($key){
-	$conect = new Conexion();
-	$c = $conect->conectando();
-	$query="select * from usuarios where Id_Usuario = '$key'";
-	$resultado = mysqli_query($c, $query);
-	$arreglo = mysqli_fetch_array($resultado);
-	$obj->Id_Usuario = $arreglo[0];
-	$obj->Usuario_Nombre = $arreglo[1];
-	$obj->Usuario_Apellido = $arreglo[2];
-	$obj->Tipo_Documento = $arreglo[3];
-	$obj->Usuario_NumeroDocumento = $arreglo[4];
-	$obj->Usuario_Direccion = $arreglo[5];
-	$obj->Usuario_Correo = $arreglo[6];
-	$obj->Usuario_Celular = $arreglo[7];
-	$obj->Usuario_Rol = $arreglo[8];
-	$obj->Estado_Usuario = $arreglo[9];
-	$obj->Usuario_Login = $arreglo[10];
-	$obj->Usuario_Password = $arreglo[11];
-
-}else{
-			
-	$obj->Id_Usuario = "";
-	$obj->Usuario_Nombre = "";
-	$obj->Usuario_Apellido = "";
-	$obj->Tipo_Documento = "";
-	$obj->Usuario_NumeroDocumento = "";
-	$obj->Usuario_Direccion = "";
-	$obj->Usuario_Correo = "";
-	$obj->Usuario_Celular = "";
-	$obj->Usuario_Rol = "";
-	$obj->Estado_Usuario = "";
-	$obj->Usuario_Login = "";
-	$obj->Usuario_Password = "";
-}
-		
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +28,7 @@ if ($key){
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Actualizar Usuario</title>
+	<title>Nuevo Usuario</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -103,6 +67,7 @@ if ($key){
 				<figure class="full-box nav-lateral-avatar">
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
+
 					<figcaption class="roboto-medium text-center">
 						Usuario <br><small class="roboto-condensed-light">Rol</small>
 					</figcaption>
@@ -118,16 +83,16 @@ if ($key){
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-sliders-h"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="client-list.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
+									<a href="client-new.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
-									<a href="Vehículos.html"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
+									<a href="client-list.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
 								</li>
 								<li>
-									<a href="roles.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
+									<a href="client-search.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
 								</li>
 								<li>
-									<a href="permisos.html"><i class="fas fa-key"></i> &nbsp; Permisos</a>
+									<a href="client-search.html"><i class="fas fa-key"></i> &nbsp; Permisos</a>
 								</li>
 							</ul>
 						</li>
@@ -136,10 +101,10 @@ if ($key){
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-keyboard"></i> &nbsp; Registros Patios <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="Entrada-Vehiculo.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
+									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
 								</li>
 								<li>
-									<a href="salida-vehiculos.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
+									<a href="item-list.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
 								</li>
 							</ul>
 						</li>
@@ -148,7 +113,7 @@ if ($key){
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-search"></i> &nbsp; Consultas <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="orden-trabajo.html"><i class="fas fa-ticket-alt"></i> &nbsp; Ordenes de Trabajo</a>
+									<a href="reservation-new.html"><i class="fas fa-ticket-alt"></i> &nbsp; Ordenes de Trabajo</a>
 								</li>
 						</li>
 							</ul>
@@ -164,7 +129,7 @@ if ($key){
 				<a href="#" class="float-left show-nav-lateral">
 					<i class="fas fa-exchange-alt"></i>
 				</a>
-				<a href="client-delete.php">
+				<a href="user-update.html">
 					<i class="fas fa-user-cog"></i>
 				</a>
 				<a href="#" class="btn-exit-system">
@@ -175,18 +140,18 @@ if ($key){
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-				<i class="fas fa-trash"></i> &nbsp;ELIMINAR USUARIO
+					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO
 				</h3>
 				<p class="text-justify">
-					
+					Agregar usuarios
 				</p>
 			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
-					<!-- <li>
-						<a href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE</a>
-					</li> -->
+					<li>
+						<a class="active" href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</a>
+					</li>
 					<li>
 						<a href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE USUARIOS</a>
 					</li>
@@ -197,31 +162,31 @@ if ($key){
 			<div class="container-fluid">
 				<form action="" class="form-neon" autocomplete="off" method="POST">
 					<fieldset>
-						<legend><i class="fas fa-user"></i> &nbsp; Información Básica</legend>
+						<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Id_Usuario" class="bmd-label-floating"></label>
-										<input class="form-control form-control-sm" type="text" name="Id_Usuario" id="Id_Usuario" value ="<?php echo $obj->Id_Usuario?>"placeholder="El Codigo es Asignado por el Sistema" aria-label=".form-control-sm example" readOnly maxlength="27">
+										<input class="form-control form-control-sm" type="text" name="Id_Usuario" id="Id_Usuario" placeholder="El Codigo es Asignado por el Sistema" autofocus required aria-label=".form-control-sm example" readOnly maxlength="27">
 									</div>
 								</div>
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Nombre" class="bmd-label-floating">Nombre</label>
-										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="Usuario_Nombre" id="Usuario_Nombre" value ="<?php echo $obj->Usuario_Nombre?>" maxlength="40">
+										<input type="text" required class="form-control" name="Usuario_Nombre" id="Usuario_Nombre" maxlength="40">
 									</div>
 								</div>
 								<div class="col-12 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Apellido" class="bmd-label-floating">Apellido</label>
-										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="Usuario_Apellido" id="Usuario_Apellido" value ="<?php echo $obj->Usuario_Apellido?>" maxlength="40">
+										<input type="text" required class="form-control" name="Usuario_Apellido" id="Usuario_Apellido" maxlength="40">
 									</div>
 								</div>
 								<div class="col-12 col-md-7">
 								<div class="form-group">
 								<label for="Tipo_Documento" class="bmd-label-floating">Tipo Documento</label>
-	                                <select class="form-control" name="Tipo_Documento" id="Tipo_Documento" value ="<?php echo $obj->Tipo_Documento?>" >
+	                                <select class="form-control" name="Tipo_Documento" id="Tipo_Documento">
 										<?php
 											$query ="SELECT * FROM Tipo_Documentos";
 											$NombreDocumentos = mysqli_query($c,$query);
@@ -240,31 +205,31 @@ if ($key){
 								<div class="col-12 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_NumeroDocumento" class="bmd-label-floating">Numero de documento</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_NumeroDocumento" id="Usuario_NumeroDocumento" value ="<?php echo $obj->Usuario_NumeroDocumento?>" maxlength="150">
+										<input type="text" required class="form-control" name="Usuario_NumeroDocumento" id="Usuario_NumeroDocumento" maxlength="150">
 									</div>
 								</div>
 								<div class="col-12 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Direccion" class="bmd-label-floating">Dirección</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Direccion" id="Usuario_Direccion" value ="<?php echo $obj->Usuario_Direccion?>" maxlength="150">
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Direccion" id="Usuario_Direccion" maxlength="150">
 									</div>
 								</div>
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Correo" class="bmd-label-floating">Correo electronico</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Correo" id="Usuario_Correo" value ="<?php echo $obj->Usuario_Correo?>" maxlength="150">
+										<input type="text" required class="form-control" name="Usuario_Correo" id="Usuario_Correo" maxlength="150">
 									</div>
 								</div>
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 										<label for="Usuario_Celular" class="bmd-label-floating">Celular</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Celular" id="Usuario_Celular" value ="<?php echo $obj->Usuario_Celular?>" maxlength="150">
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Celular" id="Usuario_Celular" maxlength="150">
 									</div>
 								</div>
 								<div class="col-10 col-md-7">
 									<div class="form-group">
 									<label for="Usuario_Rol" class="bmd-label-floating">Rol</label>
-	                                <select class="form-control" name="Usuario_Rol" id="Usuario_Rol" value ="<?php echo $obj->Usuario_Rol?>">
+	                                <select class="form-control" name="Usuario_Rol" id="Usuario_Rol">
 										<?php
 											$query ="SELECT * FROM Roles";
 											$NombreRoles = mysqli_query($c,$query);
@@ -299,32 +264,32 @@ if ($key){
 										}
 										?>    	
 	                                </select>
-								</div>
+									</div>
 								</div>
 								<div class="col-10 col-md-7">
 								<div class="form-group">
 										<label for="Usuario_Login" class="bmd-label-floating">Login</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Login" id="Usuario_Login" value ="<?php echo $obj->Usuario_Login?>" >
+										<input type="text" required class="form-control" name="Usuario_Login" id="Usuario_Login" >
 								</div>
 								</div>
 								<div class="col-10 col-md-7">
 								<div class="form-group">
 										<label for="Usuario_Password" class="bmd-label-floating">Password</label>
-										<input type="password" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Password" id="Usuario_Password" value ="<?php echo $obj->Usuario_Password?>">
+										<input type="password" required class="form-control" name="Usuario_Password" id="Usuario_Password">
 									</div>
 								</div>
 							</div>
 						</div>
-						<p class="text-center" style="margin-top: 40px;" a href="client-list.php">
-						<button type="submit" class="btn btn-raised btn-success btn-danger" name="Eliminar"><i class="fas fa-trash"></i>&nbsp; ELIMINAR</button>
-						</p>
 					</fieldset>
 					<br><br><br>
-					<p>
-
-					
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm" name="Guardar"><i class="far fa-save"></i> &nbsp; GUARDAR </button> 
+					</p>
 				</form>
-			</div>
+			</div>	
+
 		</section>
 	</main>
 	

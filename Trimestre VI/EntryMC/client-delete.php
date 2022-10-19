@@ -22,24 +22,40 @@ if($_POST){
 }
 $key = $_GET['key'];
 //echo $key; 
-$conect = new Conexion();
-$c = $conect->conectando();
-$query="select * from usuarios where Id_Usuario = '$key'";
-$resultado = mysqli_query($c, $query);
-$arreglo = mysqli_fetch_array($resultado);
-
-$obj->Id_Usuario = $arreglo[0];
-$obj->Usuario_Nombre = $arreglo[1];
-$obj->Usuario_Apellido = $arreglo[2];
-$obj->Tipo_Documento = $arreglo[3];
-$obj->Usuario_NumeroDocumento = $arreglo[4];
-$obj->Usuario_Direccion = $arreglo[5];
-$obj->Usuario_Correo = $arreglo[6];
-$obj->Usuario_Celular = $arreglo[7];
-$obj->Usuario_Rol = $arreglo[8];
-$obj->Estado_Usuario = $arreglo[9];
-$obj->Usuario_Login = $arreglo[10];
-$obj->Usuario_Password = $arreglo[11];
+if ($key>0){
+			$conect = new Conexion();
+			$c = $conect->conectando();
+			$query="select * from usuarios where Id_Usuario = '$key'";
+			$resultado = mysqli_query($c, $query);
+			$arreglo = mysqli_fetch_array($resultado);
+			$obj->Id_Usuario = $arreglo[0];
+			$obj->Usuario_Nombre = $arreglo[1];
+			$obj->Usuario_Apellido = $arreglo[2];
+			$obj->Tipo_Documento = $arreglo[3];
+			$obj->Usuario_NumeroDocumento = $arreglo[4];
+			$obj->Usuario_Direccion = $arreglo[5];
+			$obj->Usuario_Correo = $arreglo[6];
+			$obj->Usuario_Celular = $arreglo[7];
+			$obj->Usuario_Rol = $arreglo[8];
+			$obj->Estado_Usuario = $arreglo[9];
+			$obj->Usuario_Login = $arreglo[10];
+			$obj->Usuario_Password = $arreglo[11];
+		
+		}else{
+			
+			$obj->Id_Usuario = "";
+			$obj->Usuario_Nombre = "";
+			$obj->Usuario_Apellido = "";
+			$obj->Tipo_Documento = "";
+			$obj->Usuario_NumeroDocumento = "";
+			$obj->Usuario_Direccion = "";
+			$obj->Usuario_Correo = "";
+			$obj->Usuario_Celular = "";
+			$obj->Usuario_Rol = "";
+			$obj->Estado_Usuario = "";
+			$obj->Usuario_Login = "";
+			$obj->Usuario_Password = "";
+		}
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +103,7 @@ $obj->Usuario_Password = $arreglo[11];
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Usuario <br><small class="roboto-condensed-light">Rol</small>
+						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -101,16 +117,16 @@ $obj->Usuario_Password = $arreglo[11];
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-sliders-h"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="client-list.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
+									<a href="client-new.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
-									<a href="Vehículos.html"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
+									<a href="client-list.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
 								</li>
 								<li>
-									<a href="roles.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
+									<a href="client-search.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
 								</li>
 								<li>
-									<a href="permisos.html"><i class="fas fa-key"></i> &nbsp; Permisos</a>
+									<a href="client-search.html"><i class="fas fa-key"></i> &nbsp; Permisos</a>
 								</li>
 							</ul>
 						</li>
@@ -119,10 +135,10 @@ $obj->Usuario_Password = $arreglo[11];
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-keyboard"></i> &nbsp; Registros Patios <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="Entrada-Vehiculo.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
+									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
 								</li>
 								<li>
-									<a href="salida-vehiculos.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
+									<a href="item-list.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
 								</li>
 							</ul>
 						</li>
@@ -131,7 +147,7 @@ $obj->Usuario_Password = $arreglo[11];
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-search"></i> &nbsp; Consultas <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="orden-trabajo.html"><i class="fas fa-ticket-alt"></i> &nbsp; Ordenes de Trabajo</a>
+									<a href="reservation-new.html"><i class="fas fa-ticket-alt"></i> &nbsp; Ordenes de Trabajo</a>
 								</li>
 						</li>
 							</ul>
@@ -147,7 +163,7 @@ $obj->Usuario_Password = $arreglo[11];
 				<a href="#" class="float-left show-nav-lateral">
 					<i class="fas fa-exchange-alt"></i>
 				</a>
-				<a href="user-update.php">
+				<a href="user-update.html">
 					<i class="fas fa-user-cog"></i>
 				</a>
 				<a href="#" class="btn-exit-system">
@@ -158,7 +174,7 @@ $obj->Usuario_Password = $arreglo[11];
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-sync-alt fa-fw"></i> &nbsp; ACTUALIZAR USUARIO
+				<i class="fas fa-trash"></i> &nbsp;ELIMINAR USUARIO
 				</h3>
 				<p class="text-justify">
 					
@@ -299,7 +315,7 @@ $obj->Usuario_Password = $arreglo[11];
 							</div>
 						</div>
 						<p class="text-center" style="margin-top: 40px;">
-						<button type="submit" class="btn btn-raised btn-success btn-sm" name="Modificar" ><i class="fas fa-sync-alt"> </i>&nbsp;ACTUALIZAR</button>                                   
+						<button type="submit" class="btn btn-raised btn-success btn-danger" name="Eliminar"><i class="fas fa-trash"></i>&nbsp; ELIMINAR</button>
 						</p>
 					</fieldset>
 					<br><br><br>
