@@ -20,23 +20,17 @@ $desde = ($pagina-1)*$maximoRegistros;
 $totalRegistros=ceil($TotalRegistros/$maximoRegistros);
 
 if(isset($_POST['buscarUsuario'])){
-    $query="SELECT Id_Registro_Salida, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Salida FROM registro_salida RG
-	INNER JOIN vehiculos V ON RG.Id_Vehiculo = V.Id_Vehiculo
-	INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo  WHERE V.Estado_Vehiculo= 4 ORDER BY Id_Registro_Salida WHERE Placa like '%$obj->Placa%' limit $desde, $maximoRegistros";
+    $query="SELECT Id_Registro_Salida, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Salida FROM registro_salida RG INNER JOIN vehiculos V ON RG.Id_Vehiculo = V.Id_Vehiculo INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo WHERE V.Estado_Vehiculo=4 ORDER BY Id_Registro_Salida WHERE Placa like '%$obj->Placa%' limit $desde, $maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
     $Vehiculos = mysqli_fetch_array($ejecuta);
 	
-}else{$query="SELECT Id_Registro_Salida, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Salida FROM registro_salida RG
-	INNER JOIN vehiculos V ON RG.Id_Vehiculo = V.Id_Vehiculo
-	INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo  WHERE V.Estado_Vehiculo= 4 ORDER BY Id_Registro_Salida limit $desde,$maximoRegistros";
+}else{$query="SELECT Id_Registro_Salida, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Salida FROM registro_salida RG INNER JOIN vehiculos V ON RG.Id_Vehiculo = V.Id_Vehiculo INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo WHERE V.Estado_Vehiculo=4 ORDER BY Id_Registro_Salida limit $desde,$maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
     $Vehiculos = mysqli_fetch_array($ejecuta);
 }
 
 
-$query = "SELECT Id_Registro_Salida, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Salida FROM registro_salida RG
-INNER JOIN vehiculos V ON RG.Id_Vehiculo = V.Id_Vehiculo
-INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo  WHERE V.Estado_Vehiculo= 4 ORDER BY Id_Registro_Salida limit $desde,$maximoRegistros" ;
+$query = "SELECT Id_Registro_Salida, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Salida FROM registro_salida RG INNER JOIN vehiculos V ON RG.Id_Vehiculo = V.Id_Vehiculo INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo WHERE V.Estado_Vehiculo=4 ORDER BY Id_Registro_Salida limit $desde,$maximoRegistros" ;
 
 $ejecuta = mysqli_query($c,$query);
 $RegistroSalida = mysqli_fetch_array ($ejecuta);
@@ -47,7 +41,7 @@ $RegistroSalida = mysqli_fetch_array ($ejecuta);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Lista de items</title>
+    <title>Registro de Salida</title>
 
     <!-- Normalize V8.0.1 -->
     <link rel="stylesheet" href="./css/normalize.css">
@@ -88,7 +82,7 @@ $RegistroSalida = mysqli_fetch_array ($ejecuta);
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+						Usuario <br><small class="roboto-condensed-light">Rol</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -123,7 +117,7 @@ $RegistroSalida = mysqli_fetch_array ($ejecuta);
 									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
 								</li>
 								<li>
-									<a href="Registro-Salida.php"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
+									<a href="Registro-Salida-List.php"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
 								</li>
 							</ul>
 						</li>
@@ -148,7 +142,7 @@ $RegistroSalida = mysqli_fetch_array ($ejecuta);
 				<a href="#" class="float-left show-nav-lateral">
 					<i class="fas fa-exchange-alt"></i>
 				</a>
-				<a href="user-update.html">
+				<a href="Registro-Salida-List.php">
 					<i class="fas fa-user-cog"></i>
 				</a>
 				<a href="#" class="btn-exit-system">
@@ -169,10 +163,10 @@ $RegistroSalida = mysqli_fetch_array ($ejecuta);
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR REGISTRO</a>
+						<a href="Registro-salida-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR REGISTRO</a>
 					</li>
 					<li>
-						<a class="active" href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE REGISTRO</a>
+						<a class="active" href="Vehiculo-List.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE REGISTRO</a>
 					</li>
 				</ul>	
 			</div>
@@ -215,7 +209,7 @@ $RegistroSalida = mysqli_fetch_array ($ejecuta);
 								<td><?php echo $RegistroSalida[8]?></td>
 							</tr>
 							<?php
-								}while($usuarios = mysqli_fetch_array($ejecuta));
+								}while($RegistroSalida = mysqli_fetch_array($ejecuta));
 							}
 							?>
 							

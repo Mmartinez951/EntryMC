@@ -1,39 +1,23 @@
 <?php
 include("./Conexion/Conexion.php");
-include("./Controlador/VehiculoControlador.php");
-$obj = new Vehiculos();
+include("./Controlador/categoriaControlador.php");
+$obj = new Categorias();
 $cone = new Conexion();
 $c = $cone->conectando();
 
+
 if($_POST){
 
+    $obj->Id_Registro_Salida = $_POST['Id_Registro_Salida'];
     $obj->Id_Vehiculo = $_POST['Id_Vehiculo'];
-    $obj->Vehiculo_Codigo = $_POST['Vehiculo_Codigo'];
-    $obj->Vehiculo_Placa = $_POST['Vehiculo_Placa'];
-    $obj->Vehiculo_Marca = $_POST['Vehiculo_Marca'];
-    $obj->Vehiculo_Modelo = $_POST['Vehiculo_Modelo'];
-    $obj->Vehiculo_Color = $_POST['Vehiculo_Color'];
-    $obj->Vehiculo_Tipo = $_POST['Vehiculo_Tipo'];
-    $obj->Vehiculo_Velocidad = $_POST['Vehiculo_Velocidad'];
-    $obj->Vehiculo_Estado = $_POST['Vehiculo_Estado'];
+    $obj->Codigo = $_POST['Codigo'];
+    $obj->Placa = $_POST['Placa'];
+    $obj->Marca = $_POST['Marca'];
+    $obj->Modelo = $_POST['Modelo'];
+    $obj->Nombre_Estado = $_POST['Nombre_Estado'];
+    $obj->Observaciones = $_POST['Observaciones'];
+    $obj->Fecha_Registro_Salida = $_POST['Fecha_Registro_Salida'];
 }
-$key = $_GET['key'];
-//echo $key; 
-$conect = new Conexion();
-$c = $conect->conectando();
-$query="select * from vehiculos where Id_Vehiculo = '$key'";
-$resultado = mysqli_query($c, $query);
-$arreglo = mysqli_fetch_array($resultado);
-
-$obj->Id_Vehiculo = $arreglo[0];
-$obj->Vehiculo_Codigo = $arreglo[1];
-$obj->Vehiculo_Placa = $arreglo[2];
-$obj->Vehiculo_Marca = $arreglo[3];
-$obj->Vehiculo_Modelo = $arreglo[4];
-$obj->Vehiculo_Color = $arreglo[5];
-$obj->Vehiculo_Tipo = $arreglo[6];
-$obj->Vehiculo_Velocidad = $arreglo[7];
-$obj->Vehiculo_Estado = $arreglo[8];
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +25,7 @@ $obj->Vehiculo_Estado = $arreglo[8];
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Actualizar Vehículo</title>
+	<title>Agregar Registro</title>
 
 	<!-- Normalize V8.0.1 -->
 	<link rel="stylesheet" href="./css/normalize.css">
@@ -80,8 +64,9 @@ $obj->Vehiculo_Estado = $arreglo[8];
 				<figure class="full-box nav-lateral-avatar">
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
+
 					<figcaption class="roboto-medium text-center">
-						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+						Usuario <br><small class="roboto-condensed-light">Rol</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -98,7 +83,7 @@ $obj->Vehiculo_Estado = $arreglo[8];
 									<a href="client-new.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
-									<a href="vehiculo-new.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
+									<a href="client-list.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
 								</li>
 								<li>
 									<a href="client-search.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
@@ -152,20 +137,20 @@ $obj->Vehiculo_Estado = $arreglo[8];
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-sync-alt fa-fw"></i> &nbsp; ACTUALIZAR VEHÍCULO
+					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR REGISTRO
 				</h3>
 				<p class="text-justify">
-					
+					Agregar registro de salida.
 				</p>
 			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
-					<!-- <li>
-						<a href="client-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CLIENTE</a>
-					</li> -->
 					<li>
-						<a href="Vehiculo-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE VEHÍCULOS</a>
+						<a class="active" href="Registr-Salida-New.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR REGISTRO</a>
+					</li>
+					<li>
+						<a href="Registro-Salida-List.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE REGISTROS</a>
 					</li>
 				</ul>	
 			</div>
@@ -174,57 +159,39 @@ $obj->Vehiculo_Estado = $arreglo[8];
 			<div class="container-fluid">
 				<form action="" class="form-neon" autocomplete="off" method="POST">
 					<fieldset>
-						<legend><i class="fas fa-bus"></i> &nbsp; Información básica del Vehículos</legend>
+						<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-10 col-md-7">
 									<div class="form-group">
-										<label for="Id_Vehiculo" class="bmd-label-floating"></label>
-										<input class="form-control form-control-sm" type="text" name="Id_Vehiculo" id="Id_Vehiculo" placeholder="El Codigo es Asignado por el Sistema" aria-label=".form-control-sm example" readOnly maxlength="27">
+										<label for="Id_Usuario" class="bmd-label-floating"></label>
+										<input class="form-control form-control-sm" type="text" name="Id_Usuario" id="Id_Usuario" placeholder="El Codigo es Asignado por el Sistema" autofocus required aria-label=".form-control-sm example" readOnly maxlength="27">
+									</div>
+								</div>
+								<div class="col-10 col-md-7">
+									<div class="form-group">
+										<label for="Usuario_Nombre" class="bmd-label-floating">Nombre</label>
+										<input type="text" required class="form-control" name="Usuario_Nombre" id="Usuario_Nombre" maxlength="40">
 									</div>
 								</div>
 								<div class="col-12 col-md-7">
 									<div class="form-group">
-										<label for="Vehiculo_Codigo" class="bmd-label-floating">Codigo</label>
-										<input type="text" required class="form-control" name="Vehiculo_Codigo" id="Vehiculo_Codigo" maxlength="40">
-									</div>
-								</div>
-								<div class="col-12 col-md-7">
-									<div class="form-group">
-										<label for="Vehiculo_Placa" class="bmd-label-floating">Placa</label>
-										<input type="text" required class="form-control" name="Vehiculo_Placa" id="Vehiculo_Placa" maxlength="40">
-									</div>
-								</div>
-								<div class="col-12 col-md-7">
-									<div class="form-group">
-										<label for="Vehiculo_Marca" class="bmd-label-floating">Marca</label>
-										<input type="text" class="form-control" name="Vehiculo_Marca" id="Vehiculo_Marca" maxlength="20">
-									</div>
-								</div>
-								<div class="col-12 col-md-7">
-									<div class="form-group">
-										<label for="Vehiculo_Modelo" class="bmd-label-floating">Modelo</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Vehiculo_Modelo" id="Vehiculo_Modelo" maxlength="150">
-									</div>
-								</div>
-								<div class="col-12 col-md-7">
-									<div class="form-group">
-										<label for="Vehiculo_Color" class="bmd-label-floating">Color</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Vehiculo_Color" id="Vehiculo_Color" maxlength="150">
+										<label for="Usuario_Apellido" class="bmd-label-floating">Apellido</label>
+										<input type="text" required class="form-control" name="Usuario_Apellido" id="Usuario_Apellido" maxlength="40">
 									</div>
 								</div>
 								<div class="col-12 col-md-7">
 								<div class="form-group">
-								<label for="Vehiculo_Tipo" class="bmd-label-floating">Tipo Vehículo</label>
-	                                <select class="form-control" name="Vehiculo_Tipo" id="Vehiculo_Tipo">
+								<label for="Tipo_Documento" class="bmd-label-floating">Tipo Documento</label>
+	                                <select class="form-control" name="Tipo_Documento" id="Tipo_Documento">
 										<?php
-											$query ="SELECT * FROM Tipos_Vehiculo";
-											$NombreTipoVehículo = mysqli_query($c,$query);
+											$query ="SELECT * FROM Tipo_Documentos";
+											$NombreDocumentos = mysqli_query($c,$query);
 
-											while($NombreTipo = mysqli_fetch_array($NombreTipoVehículo)){
+											while($NombreDocumento = mysqli_fetch_array($NombreDocumentos)){
 										?>
-											<option value = "<?php echo $NombreTipo[0]?>">
-											<?php echo $NombreTipo[1]?>
+											<option value = "<?php echo $NombreDocumento[0]?>">
+											<?php echo $NombreDocumento[1]?>
 											</option>
 										<?php
 										}
@@ -234,19 +201,58 @@ $obj->Vehiculo_Estado = $arreglo[8];
 								</div>
 								<div class="col-12 col-md-7">
 									<div class="form-group">
-										<label for="Vehiculo_Velocidad" class="bmd-label-floating">Velocidad MAX</label>
-										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Vehiculo_Velocidad" id="Vehiculo_Velocidad" maxlength="150">
+										<label for="Usuario_NumeroDocumento" class="bmd-label-floating">Numero de documento</label>
+										<input type="text" required class="form-control" name="Usuario_NumeroDocumento" id="Usuario_NumeroDocumento" maxlength="150">
+									</div>
+								</div>
+								<div class="col-12 col-md-7">
+									<div class="form-group">
+										<label for="Usuario_Direccion" class="bmd-label-floating">Dirección</label>
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Direccion" id="Usuario_Direccion" maxlength="150">
+									</div>
+								</div>
+								<div class="col-10 col-md-7">
+									<div class="form-group">
+										<label for="Usuario_Correo" class="bmd-label-floating">Correo electronico</label>
+										<input type="text" required class="form-control" name="Usuario_Correo" id="Usuario_Correo" maxlength="150">
+									</div>
+								</div>
+								<div class="col-10 col-md-7">
+									<div class="form-group">
+										<label for="Usuario_Celular" class="bmd-label-floating">Celular</label>
+										<input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ#- ]{1,150}" class="form-control" name="Usuario_Celular" id="Usuario_Celular" maxlength="150">
+									</div>
+								</div>
+								<div class="col-10 col-md-7">
+									<div class="form-group">
+									<label for="Usuario_Rol" class="bmd-label-floating">Rol</label>
+	                                <select class="form-control" name="Usuario_Rol" id="Usuario_Rol">
+										<?php
+											$query ="SELECT * FROM Roles";
+											$NombreRoles = mysqli_query($c,$query);
+											//echo $NombreDocumento;
+
+											while($NombreRol = mysqli_fetch_array($NombreRoles)){
+										?>
+											<option value = "<?php echo $NombreRol[0]?>">
+											<?php echo $NombreRol[1]?>
+											</option>
+										<?php
+										}
+										?>    
+											
+	                                </select>
 									</div>
 								</div>
 								<div class="col-12 col-md-7">
 								<div class="form-group">
-								<label for="Vehiculo_Estado" class="bmd-label-floating">Estado Vehículo</label>
-	                                <select class="form-control" name="Vehiculo_Estado" id="Vehiculo_Estado">
+								<label for="Estado_Usuario" class="bmd-label-floating">Estado</label>
+	                                <select class="form-control" name="Estado_Usuario" id="Estado_Usuario">
 										<?php
-											$query ="SELECT * FROM Estados_Vehiculo";
-											$NombreEstadosVehiculos = mysqli_query($c,$query);
+											$query ="SELECT * FROM Estados_Usuarios";
+											$NombreEstados = mysqli_query($c,$query);
 
-											while($NombreEstado = mysqli_fetch_array($NombreEstadosVehiculos)){
+											while($NombreEstado = mysqli_fetch_array($NombreEstados)){
 										?>
 											<option value = "<?php echo $NombreEstado[0]?>">
 											<?php echo $NombreEstado[1]?>
@@ -257,18 +263,30 @@ $obj->Vehiculo_Estado = $arreglo[8];
 	                                </select>
 									</div>
 								</div>
+								<div class="col-10 col-md-7">
+								<div class="form-group">
+										<label for="Usuario_Login" class="bmd-label-floating">Login</label>
+										<input type="text" required class="form-control" name="Usuario_Login" id="Usuario_Login" >
+								</div>
+								</div>
+								<div class="col-10 col-md-7">
+								<div class="form-group">
+										<label for="Usuario_Password" class="bmd-label-floating">Password</label>
+										<input type="password" required class="form-control" name="Usuario_Password" id="Usuario_Password">
+									</div>
+								</div>
 							</div>
 						</div>
-						<p class="text-center" style="margin-top: 40px;">
-						<button type="submit" class="btn btn-raised btn-success btn-sm" name="Modificar" ><i class="fas fa-sync-alt"> </i>&nbsp;ACTUALIZAR</button>                                   
-						</p>
 					</fieldset>
 					<br><br><br>
-
-					
-
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm" name="Guardar"><i class="far fa-save"></i> &nbsp; GUARDAR </button> 
+					</p>
 				</form>
 			</div>	
+
 		</section>
 	</main>
 	

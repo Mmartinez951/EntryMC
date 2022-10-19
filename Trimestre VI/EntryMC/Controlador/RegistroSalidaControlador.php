@@ -1,5 +1,5 @@
 <?php
-include("./modelo/DocumentosModeloSalida.php");
+include("./modelo/DocumentoModeloSalida.php");
 $obj = new RegistroSalida();
 if ($_POST){
 

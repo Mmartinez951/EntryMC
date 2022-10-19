@@ -14,23 +14,23 @@ class RegistroSalida{
                     function Agregar() {
                                         $conect = new Conexion();
                                         $c = $conect->conectando();
-                                        $query = "select * from vehiculos where Placa = ('$this->Vehiculo_Placa')";
+                                        $query = "select * from vehiculos where Placa = ('$this->Placa')";
                                         $ejecuta = mysqli_query($c, $query);
                                         if(mysqli_fetch_array($ejecuta)){
                                             echo "<script> alert ('El vehículo ya existe en el sistema')</script>";
                                         } else{
-                                                $insert= "insert into vehiculos values( '$this->Id_Vehiculo',
-                                                                                        '$this->Vehiculo_Codigo',
-                                                                                        '$this->Vehiculo_Placa',
-                                                                                        '$this->Vehiculo_Marca',
-                                                                                        '$this->Vehiculo_Modelo',
-                                                                                        '$this->Vehiculo_Color',
-                                                                                        '$this->Vehiculo_Tipo',
-                                                                                        '$this->Vehiculo_Velocidad',
-                                                                                        '$this->Vehiculo_Estado'
+                                                $insert= "insert into vehiculos values( '$this->Id_Registro_Salida',
+                                                                                        '$this->Id_Vehiculo',
+                                                                                        '$this->Codigo',
+                                                                                        '$this->Placa',
+                                                                                        '$this->Marca',
+                                                                                        '$this->Modelo',
+                                                                                        '$this->Nombre_Estado',
+                                                                                        '$this->Observaciones',
+                                                                                        '$this->Fecha_Registro_Salida'
                                                                                         )";
                                             //echo ($insert);
                                             mysqli_query($c, $insert);
                                             echo "<script> alert('El vehículo fue creado correctamente')</script>";
                                         }
-                    } 
+                                      } }

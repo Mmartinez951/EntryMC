@@ -100,7 +100,7 @@ if($_POST){
 									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehículos</a>
 								</li>
 								<li>
-									<a href="item-list.html"><i class="fas fa-bus"></i> &nbsp; Salida Vehículos</a>
+									<a href="Registro-Salida-List.php"><i class="fas fa-bus"></i> &nbsp; Salida Vehículos</a>
 								</li>
 							</ul>
 						</li>
