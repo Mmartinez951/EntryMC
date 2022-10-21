@@ -65,7 +65,7 @@ if($_POST){
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						User <br><small class="roboto-condensed-light">Rol</small>
+					Entry MC <br><small class="roboto-condensed-light">Bienvenidos</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -97,7 +97,7 @@ if($_POST){
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-keyboard"></i> &nbsp; Registros Patios <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehículos</a>
+									<a href="Registro-Entrada-List.php"><i class="fas fa-bus"></i> &nbsp; Entrada Vehículos</a>
 								</li>
 								<li>
 									<a href="Registro-Salida-List.php"><i class="fas fa-bus"></i> &nbsp; Salida Vehículos</a>

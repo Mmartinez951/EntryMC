@@ -1,12 +1,12 @@
 <?php
 include("./Conexion/Conexion.php");
-include("./Controlador/VehiculoControlador.php");
+include("./Controlador/RegistroEntradaControlador.php"); 
 if($_POST){
     $obj->Placa = $_POST['Placa'];
 }
 $cone = new Conexion();
 $c = $cone -> conectando();
-$queryCantUsuarios = "SELECT COUNT(*) AS TotalRegistros FROM vehiculos";
+$queryCantUsuarios = "SELECT COUNT(*) AS TotalRegistros FROM Registro_Entrada";
 $ejecuta = mysqli_query($c,$queryCantUsuarios);
 $TotalRegistros = mysqli_fetch_array($ejecuta)['TotalRegistros'];
 
@@ -20,68 +20,62 @@ $desde = ($pagina-1)*$maximoRegistros;
 $totalRegistros=ceil($TotalRegistros/$maximoRegistros);
 
 if(isset($_POST['buscarUsuario'])){
-    $query="SELECT Id_Vehiculo, Codigo, Placa, marca, Modelo,color,TP.Nombre_Tipo_Vehiculo, velocidad_MAX,EV.Nombre_Estado   FROM vehiculos V
-	INNER JOIN tipos_vehiculo TP ON V.Tipo_Vehiculo= TP.Id_Tipo_Vehiculo
-	INNER JOIN estados_vehiculo EV ON V.Estado_Vehiculo = EV.Id_Estado_Vehiculo ORDER BY Id_Vehiculo WHERE Placa like '%$obj->Placa%' limit $desde, $maximoRegistros";
+    $query="SELECT Id_Registro_Entrada, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Entrada FROM registro_entrada RE INNER JOIN vehiculos V ON RE.Id_Vehiculo = V.Id_Vehiculo INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo WHERE V.Estado_Vehiculo=3 ORDER BY Id_Registro_Entrada WHERE Placa like '%$obj->Placa%' limit $desde, $maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
     $Vehiculos = mysqli_fetch_array($ejecuta);
 	
-}else{$query="SELECT Id_Vehiculo, Codigo, Placa, marca, Modelo,color,TP.Nombre_Tipo_Vehiculo, velocidad_MAX,EV.Nombre_Estado   FROM vehiculos V
-	INNER JOIN tipos_vehiculo TP ON V.Tipo_Vehiculo= TP.Id_Tipo_Vehiculo
-	INNER JOIN estados_vehiculo EV ON V.Estado_Vehiculo = EV.Id_Estado_Vehiculo ORDER BY Id_Vehiculo limit $desde,$maximoRegistros";
+}else{$query="SELECT Id_Registro_Entrada, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Entrada FROM registro_entrada RE INNER JOIN vehiculos V ON RE.Id_Vehiculo = V.Id_Vehiculo INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo WHERE V.Estado_Vehiculo=3 ORDER BY Id_Registro_Entrada limit $desde,$maximoRegistros";
     $ejecuta = mysqli_query($c,$query);
     $Vehiculos = mysqli_fetch_array($ejecuta);
 }
 
 
-$query = "SELECT Id_Vehiculo, Codigo, Placa, marca, Modelo,color,TP.Nombre_Tipo_Vehiculo, velocidad_MAX,EV.Nombre_Estado   FROM vehiculos V
-INNER JOIN tipos_vehiculo TP ON V.Tipo_Vehiculo= TP.Id_Tipo_Vehiculo
-INNER JOIN estados_vehiculo EV ON V.Estado_Vehiculo = EV.Id_Estado_Vehiculo ORDER BY Id_Vehiculo limit $desde,$maximoRegistros" ;
+$query = "SELECT Id_Registro_Entrada, V.Id_Vehiculo,V.Codigo,V.Placa,V.Marca,V.Modelo, ET.Nombre_Estado, Observaciones, Fecha_Registro_Entrada FROM registro_entrada RE 
+INNER JOIN vehiculos V ON RE.Id_Vehiculo = V.Id_Vehiculo 
+INNER JOIN estados_vehiculo ET ON V.Estado_Vehiculo = ET.Id_Estado_Vehiculo WHERE V.Estado_Vehiculo=3 ORDER BY Id_Registro_Entrada limit $desde,$maximoRegistros" ;
 
 $ejecuta = mysqli_query($c,$query);
-$Vehiculos = mysqli_fetch_array ($ejecuta);
-
- 
-
-/* echo $TotalRegistros; */
+$RegistroEntrada = mysqli_fetch_array ($ejecuta);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista de clientes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Registro de Entrada</title>
 
-	<!-- Normalize V8.0.1 -->
-	<link rel="stylesheet" href="./css/normalize.css">
+    <!-- Normalize V8.0.1 -->
+    <link rel="stylesheet" href="./css/normalize.css">
 
-	<!-- Bootstrap V4.3 -->
-	<link rel="stylesheet" href="./css/bootstrap.min.css">
+    <!-- Bootstrap V4.3 -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
 
-	<!-- Bootstrap Material Design V4.0 -->
-	<link rel="stylesheet" href="./css/bootstrap-material-design.min.css">
+    <!-- Bootstrap Material Design V4.0 -->
+    <link rel="stylesheet" href="./css/bootstrap-material-design.min.css">
 
-	<!-- Font Awesome V5.9.0 -->
-	<link rel="stylesheet" href="./css/all.css">
+    <!-- Font Awesome V5.9.0 -->
+    <link rel="stylesheet" href="./css/all.css">
 
-	<!-- Sweet Alerts V8.13.0 CSS file -->
-	<link rel="stylesheet" href="./css/sweetalert2.min.css">
+    <!-- Sweet Alerts V8.13.0 CSS file -->
+    <link rel="stylesheet" href="./css/sweetalert2.min.css">
 
-	<!-- Sweet Alert V8.13.0 JS file-->
-	<script src="./js/sweetalert2.min.js" ></script>
+    <!-- Sweet Alert V8.13.0 JS file-->
+    <script src="./js/sweetalert2.min.js"></script>
 
-	<!-- jQuery Custom Content Scroller V3.1.5 -->
-	<link rel="stylesheet" href="./css/jquery.mCustomScrollbar.css">
-	
-	<!-- General Styles -->
-	<link rel="stylesheet" href="./css/style.css">
+    <!-- jQuery Custom Content Scroller V3.1.5 -->
+    <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.css">
+
+    <!-- General Styles -->
+    <link rel="stylesheet" href="./css/style.css">
 
 
 </head>
+
+
 <body>
-	
-	<!-- Main container -->
-	<main class="full-box main-container">
+    <!-- Main container -->
+  <main class="full-box main-container">
 		<!-- Nav lateral -->
 		<section class="full-box nav-lateral">
 			<div class="full-box nav-lateral-bg show-nav-lateral"></div>
@@ -90,7 +84,7 @@ $Vehiculos = mysqli_fetch_array ($ejecuta);
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Entry MC <br><small class="roboto-condensed-light">Bienvenidos</small>
+					Entry MC <br><small class="roboto-condensed-light">Bienvenidos</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -150,7 +144,7 @@ $Vehiculos = mysqli_fetch_array ($ejecuta);
 				<a href="#" class="float-left show-nav-lateral">
 					<i class="fas fa-exchange-alt"></i>
 				</a>
-				<a href="user-update.html">
+				<a href="Registro-Entrada-List.php">
 					<i class="fas fa-user-cog"></i>
 				</a>
 				<a href="#" class="btn-exit-system">
@@ -161,44 +155,24 @@ $Vehiculos = mysqli_fetch_array ($ejecuta);
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i><i class="fas fa-bus"></i> &nbsp; LISTA DE VEHÍCULOS
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; REGISTRO DE ENTRADA
 				</h3>
 				<p class="text-justify">
-					GESTIÓN DE VEHÍCULOS DE LA PLATAFORMA EntryMC 
+					GESTIÓN DE ENTRADA DE VEHÍCULOS
 				</p>
 			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a href="Vehiculo-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR VEHÍCULO</a>
+						<a href="Registro-salida-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR REGISTRO</a>
 					</li>
 					<li>
-						<a class="active" href="client-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE VEHÍCULOS</a>
+						<a class="active" href="Vehiculo-List.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE REGISTRO</a>
 					</li>
 				</ul>	
 			</div>
-			<div class="container-fluid">
-				<form class="form-neon" action="">
-					<div class="container-fluid">
-						<div class="row justify-content-md-center">
-							<div class="col-12 col-md-6">
-								<div class="form-group">
-									<label for="inputSearch" class="bmd-label-floating">¿Qué vehículo estas buscando?</label>
-									<input type="text" class="form-control" name="buscarUsuario" id="inputSearch" maxlength="30">
-								</div>
-							</div>
-							<div class="col-12">
-								<p class="text-center" style="margin-top: 40px;">
-									<button type="submit" name="buscarUsuario" id="buscarUsuario" class="btn btn-raised btn-info"><i class="fas fa-search"></i> &nbsp; BUSCAR</button>
-								</p>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			
-			
+
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
@@ -206,20 +180,18 @@ $Vehiculos = mysqli_fetch_array ($ejecuta);
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
+								<th>Vehículo</th>
 								<th>Codigo</th>
 								<th>Placa</th>
-								<th>Marca</th>
+								<th>Marca </th>
 								<th>Modelo</th>
-								<th>Color</th>
-								<th>Tipo Vehículo</th>
-								<th>Velocidad</th>
-								<th>Estado</th>
-								<th>ACTUALIZAR</th>
-								<th>ELIMINAR</th>
+								<th>Estado Vehículo</th>
+								<th>Observaciones </th>
+								<th>Fecha Salida</th>
 							</tr>
 						</thead>
 							<?php
-							if($Vehiculos==0){
+							if($RegistroEntrada==0){
 								echo"No hay Registros";
 							}else{
 								do{
@@ -228,41 +200,21 @@ $Vehiculos = mysqli_fetch_array ($ejecuta);
 
 						<tbody>
 							<tr class="text-center" >
-								<td><?php echo $Vehiculos[0]?></td>
-								<td><?php echo $Vehiculos[1]?></td>
-								<td><?php echo $Vehiculos[2]?></td>
-								<td><?php echo $Vehiculos[3]?></td>
-								<td><?php echo $Vehiculos[4]?></td>
-								<td><?php echo $Vehiculos[5]?></td>
-								<td><?php echo $Vehiculos[6]?></td>
-								<td><?php echo $Vehiculos[7]?></td>
-								<td><?php echo $Vehiculos[8]?></td>
-								
-							
-							
-								</td>
-								<td>
-									<a href=" <?php if($Vehiculos[0] <> ''){
-										echo "Vehiculo-update.php?key=".urlencode($Vehiculos[0]);
-									}  ?>"
-									class="btn btn-success">
-									<i class="fas fa-edit"></i>
-									</a>
-								</td>
-								<td>
-									<a href=" <?php if($Vehiculos[0] <> ''){
-										echo "client-delete.php?key=".urlencode($Vehiculos[0]);
-									}  ?>"
-										class="btn btn-warning">
-		  								<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
+								<td><?php echo $RegistroEntrada[0]?></td>
+								<td><?php echo $RegistroEntrada[1]?></td>
+								<td><?php echo $RegistroEntrada[2]?></td>
+								<td><?php echo $RegistroEntrada[3]?></td>
+								<td><?php echo $RegistroEntrada[4]?></td>
+								<td><?php echo $RegistroEntrada[5]?></td>
+								<td><?php echo $RegistroEntrada[6]?></td>
+								<td><?php echo $RegistroEntrada[7]?></td>
+								<td><?php echo $RegistroEntrada[8]?></td>
 							</tr>
 							<?php
-								}while($Vehiculos = mysqli_fetch_array($ejecuta));
+								}while($RegistroEntrada = mysqli_fetch_array($ejecuta));
 							}
 							?>
+							
 						</tbody>
 					</table>
 				</div>
@@ -307,8 +259,8 @@ $Vehiculos = mysqli_fetch_array ($ejecuta);
 
 		</section>
 	</main>
-	
-	
+    
+    	
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->

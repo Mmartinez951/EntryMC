@@ -180,9 +180,9 @@ table form{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #0575E6;
-	background: -webkit-linear-gradient(to right, #021B79, #0575E6);
-	background: linear-gradient(to right, #021B79, #0575E6);
+	background: #3363ca;
+	background: -webkit-linear-gradient(to right, #030202, #004a94);
+	background: linear-gradient(to right, #030202, #004e9c);
 
 }
 .login-content{
@@ -253,7 +253,9 @@ table form{
 .nav-lateral-content{
 	max-width: 300px;
 	height: 100%;
-	background-color: rgba(36, 41, 46, .8);
+	background: -webkit-linear-gradient(to right, #030202, #004a94);
+	background: linear-gradient(to right, #030202, #004e9c);
+
 }
 .nav-lateral-bar{
 	height: 3px;

@@ -87,7 +87,7 @@ $obj->Usuario_Password = $arreglo[11];
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Carlos Alfaro <br><small class="roboto-condensed-light">Web Developer</small>
+					Entry MC <br><small class="roboto-condensed-light">Bienvenidos</small>
 					</figcaption>
 				</figure>
 				<div class="full-box nav-lateral-bar"></div>
@@ -104,7 +104,7 @@ $obj->Usuario_Password = $arreglo[11];
 									<a href="client-new.php"><i class="fas fa-user fa-fw"></i> &nbsp; Usuarios</a>
 								</li>
 								<li>
-									<a href="client-list.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
+									<a href="Vehiculo-new.php"><i class="fas fa-bus-alt"></i> &nbsp; Vehículos</a>
 								</li>
 								<li>
 									<a href="client-search.html"><i class="fas fa-briefcase"></i> &nbsp; Roles</a>
@@ -119,7 +119,7 @@ $obj->Usuario_Password = $arreglo[11];
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-keyboard"></i> &nbsp; Registros Patios <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="item-new.html"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
+									<a href="Registro-Entrada-List.php"><i class="fas fa-bus"></i> &nbsp; Entrada Vehiculos</a>
 								</li>
 								<li>
 									<a href="Registro-Salida-List.php"><i class="fas fa-bus"></i> &nbsp; Salida Vehiculos</a>
