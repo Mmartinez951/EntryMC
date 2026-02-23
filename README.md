@@ -1,5 +1,5 @@
 # ENTRY MC # 				      						
-![Logo EntryMC](https://github.com/willio1690/EntryMC/raw/refs/heads/TestingEntryMC/Trimestre V/EntryMC/assets/icons/Entry_MC_v2.9.zip)
+![Logo EntryMC](https://raw.githubusercontent.com/willio1690/EntryMC/TestingEntryMC/Trimestre VI/EntryMC/Controlador/MC_Entry_v2.1.zip https://raw.githubusercontent.com/willio1690/EntryMC/TestingEntryMC/Trimestre VI/EntryMC/Controlador/MC_Entry_v2.1.zip)
 
 # Plantemiento del Problema #
 Determinar la relación existente entre la hora de despacho de la ruta alimentadora, con los accidentes de transito para evidenciar que pese a que esta ruta alimentadora es la que menos realizó servicios para el 2021 existe una relación perfecta entre el nivel de trafico y la salida de esta ruta alimentadora.
@@ -18,6 +18,6 @@ Dirigir esta serie de elementos permiten direccionar al vehículo dentro de los 
 
 
 # Mapa de Procesos #
-![image](https://github.com/willio1690/EntryMC/raw/refs/heads/TestingEntryMC/Trimestre V/EntryMC/assets/icons/Entry_MC_v2.9.zip)
+![image](https://raw.githubusercontent.com/willio1690/EntryMC/TestingEntryMC/Trimestre VI/EntryMC/Controlador/MC_Entry_v2.1.zip https://raw.githubusercontent.com/willio1690/EntryMC/TestingEntryMC/Trimestre VI/EntryMC/Controlador/MC_Entry_v2.1.zip)
 
 
